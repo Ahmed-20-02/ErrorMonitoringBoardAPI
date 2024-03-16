@@ -23,7 +23,6 @@
   <ItemGroup>
     <Folder Include="Business\" />
     <Folder Include="Data\Commands\" />
-    <Folder Include="Data\Entities\" />
     <Folder Include="Data\Queries\" />
     <Folder Include="Logger\" />
     <Folder Include="Resources\" />
