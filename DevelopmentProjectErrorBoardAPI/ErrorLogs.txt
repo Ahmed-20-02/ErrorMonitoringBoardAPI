@@ -1,0 +1,6 @@
+16/03/2024 16:05:49 | Getting Errors
+16/03/2024 16:08:13 | Getting Errors
+16/03/2024 16:12:44 | GetAllErrors Called
+16/03/2024 16:12:44 | Getting Errors
+16/03/2024 16:14:10 | GetAllErrors Called
+16/03/2024 16:14:10 | Getting Errors

@@ -1,6 +1,6 @@
 @DevelopmentProjectErrorBoardAPI_HostAddress = http://localhost:5114
 
-GET {{DevelopmentProjectErrorBoardAPI_HostAddress}}/weatherforecast/
+GET {{DevelopmentProjectErrorBoardAPI_HostAddress}}/GetErrors/
 Accept: application/json
 
 ###
