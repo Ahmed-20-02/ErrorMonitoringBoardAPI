@@ -14,7 +14,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Entities
         public string InitialFile { get; set; }
         
         [Column("LineNumber")]
-        public string LineNumber { get; set; }
+        public int LineNumber { get; set; }
         
         [Column("CreatedDate")]
         public DateTime CreatedDate { get; set; }
@@ -31,7 +31,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Entities
         public int DeveloperId { get; set; }
         
         [Column("StatusId"), ForeignKey("StatusId")]
-        public Status Status { get; set; } 
+        public Status Status { get; set; }
         public int StatusId { get; set; }
     }
 }

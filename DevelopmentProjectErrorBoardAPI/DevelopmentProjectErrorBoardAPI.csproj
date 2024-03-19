@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Data\Commands\Interfaces\" />
-    <Folder Include="Resources\" />
   </ItemGroup>
 
 </Project>
