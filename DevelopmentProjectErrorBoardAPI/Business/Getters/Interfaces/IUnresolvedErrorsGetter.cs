@@ -1,9 +1,9 @@
 namespace DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces
 {
-    using DevelopmentProjectErrorBoardAPI.Data.Entities;
+    using DevelopmentProjectErrorBoardAPI.Resources;
 
     public interface IUnresolvedErrorsGetter
     {
-        List<Error> Get();
+        ErrorAndPathListModel Get();
     }
 }

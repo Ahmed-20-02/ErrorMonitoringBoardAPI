@@ -2,8 +2,9 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Mappers
 {
     using DevelopmentProjectErrorBoardAPI.Resources;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
+    using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
 
-    public class ErrorModelMapper
+    public class ErrorModelMapper : IErrorModelMapper
     {
         public ErrorModel Map(Error error)
         {

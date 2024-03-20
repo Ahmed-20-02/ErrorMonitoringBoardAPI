@@ -2,6 +2,7 @@ using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Data;
 using DevelopmentProjectErrorBoardAPI.Data.Entities;
 using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
+using DevelopmentProjectErrorBoardAPI.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
@@ -12,11 +13,6 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
     [Route("[controller]")]
     public class GetErrorsController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly IAllErrorsGetter _allErrorsGetter;
         private readonly IUnresolvedErrorsGetter _unresolvedErrorsGetter;
@@ -34,10 +30,17 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         }
 
         [HttpGet(Name = "GetAllErrors")]
-        public IEnumerable<Error> Get()
+        public IActionResult Get()
         {
             _logger.Log("GetAllErrors Called");
-            return _unresolvedErrorsGetter.Get(); //_allErrorsGetter.Get().ToList();
+            try
+            {
+                return new OkObjectResult(_unresolvedErrorsGetter.Get());
+            }
+            catch (Exception e)
+            {
+                return new BadRequestObjectResult(e.Message);
+            }
         }
     }
 }

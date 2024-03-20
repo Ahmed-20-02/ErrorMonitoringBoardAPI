@@ -2,6 +2,6 @@ namespace DevelopmentProjectErrorBoardAPI.Resources
 {
     public class ErrorAndPathListModel
     {
-        public List<ErrorAndPathModel> errors { get; set; }
+        public List<ErrorAndPathModel> ErrorsAndPaths { get; set; }
     }
 }

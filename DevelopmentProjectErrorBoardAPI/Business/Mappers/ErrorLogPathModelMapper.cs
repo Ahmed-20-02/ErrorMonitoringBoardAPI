@@ -2,8 +2,9 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Mappers
 {
     using DevelopmentProjectErrorBoardAPI.Resources;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
+    using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
 
-    public class ErrorLogPathModelMapper
+    public class ErrorLogPathModelMapper : IErrorLogPathModelMapper
     {
         public ErrorLogPathModel Map(ErrorLogPath logPath)
         {
