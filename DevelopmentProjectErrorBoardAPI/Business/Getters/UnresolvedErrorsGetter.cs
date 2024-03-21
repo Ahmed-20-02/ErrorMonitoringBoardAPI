@@ -27,6 +27,7 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
         {
             var unresolvedErrors = _getUnresolvedErrorsQuery.Get().Result;
             var errors = new ErrorAndPathListModel();
+            errors.ErrorsAndPaths = new List<ErrorAndPathModel>();
 
             for (int i = 0; i < unresolvedErrors.Count; i++)
             {
@@ -34,10 +35,14 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
 
                 var errorPathModel = new ErrorAndPathModel();
                 errorPathModel.Error = _errorModelMapper.Map(unresolvedErrors[i]);
-                
-                for (int y = 0; y < logPaths.Result.Count; y++)
+                errorPathModel.LogPaths = new List<ErrorLogPathModel>();
+
+                if (logPaths.Result.Count > 0)
                 {
-                    errorPathModel.LogPaths.Add(_errorLogPathModelMapper.Map(logPaths.Result[y]));
+                    for (int y = 0; y < logPaths.Result.Count; y++)
+                    {
+                        errorPathModel.LogPaths.Add(_errorLogPathModelMapper.Map(logPaths.Result[y]));
+                    }
                 }
                 
                 errors.ErrorsAndPaths.Add(errorPathModel);
