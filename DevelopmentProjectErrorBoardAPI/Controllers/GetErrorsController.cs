@@ -29,13 +29,13 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             _unresolvedErrorsGetter = unresolvedErrorsGetter;
         }
 
-        [HttpGet(Name = "GetAllErrors")]
+        [HttpGet("GetAllErrors")]
         public IActionResult Get()
         {
             _logger.Log("GetAllErrors Called");
             try
             {
-                return new OkObjectResult(_unresolvedErrorsGetter.Get());
+                return new OkObjectResult(_unresolvedErrorsGetter.Get().ErrorsAndPaths);
             }
             catch (Exception e)
             {

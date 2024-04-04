@@ -4,7 +4,27 @@ using Autofac.Extensions.DependencyInjection;
 using DevelopmentProjectErrorBoardAPI.Business.AutofacDependencies;
 using DevelopmentProjectErrorBoardAPI.Data;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+var MyAllowAllOrigins = "_myAllowAllOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowAllOrigins,
+        policy =>
+        {
+            policy.AllowAnyOrigin();
+        }
+    );
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            //policy.AllowAnyOrigin();
+            policy.WithOrigins("http://localhost:5015");
+        }
+    );
+});
 
 ////Reference
 //https://stackoverflow.com/questions/69754985/adding-autofac-to-net-core-6-0-using-the-new-single-file-template/71448702#71448702
@@ -37,6 +57,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//Get around no CORS policy error
+app.UseStaticFiles();
+app.UseRouting();
+app.UseCors(/*MyAllowAllOrigins*/ MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 
