@@ -19,7 +19,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
 
         public async Task<List<ErrorLogPath>> Get(int errorId)
         {
-            _logger.Log($"Getting Log path fot Error {errorId}");
+            _logger.Log($"Getting Log path for Error {errorId}");
 
             using (var context = _contextFactory.CreateDbContext())
             {

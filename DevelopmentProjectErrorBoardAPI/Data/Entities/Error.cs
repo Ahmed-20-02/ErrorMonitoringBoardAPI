@@ -22,6 +22,9 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Entities
         [Column("UpdatedDate")]
         public DateTime UpdatedDate { get; set; }
         
+        [Column("Message")]
+        public string Message { get; set; }
+        
         [Column("AgentId"), ForeignKey("AgentId")]
         public User Agent { get; set; } 
         public int AgentId { get; set; }

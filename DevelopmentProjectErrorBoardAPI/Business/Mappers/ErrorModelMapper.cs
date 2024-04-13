@@ -17,7 +17,8 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Mappers
                 UpdatedDate = error.UpdatedDate,
                 AgentId = error.AgentId,
                 DeveloperId = error.DeveloperId,
-                StatusId = error.StatusId
+                StatusId = error.StatusId,
+                Message = error.Message
             };
         }
 

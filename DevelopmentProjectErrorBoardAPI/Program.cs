@@ -14,14 +14,14 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowAllOrigins,
         policy =>
         {
-            policy.AllowAnyOrigin();
+            policy.AllowAnyOrigin().AllowAnyMethod();;
         }
     );
     options.AddPolicy(name: MyAllowSpecificOrigins,
         policy =>
         {
-            //policy.AllowAnyOrigin();
-            policy.WithOrigins("http://localhost:5015");
+            policy.WithOrigins("http://localhost:5015", "http://localhost:7213")
+                .AllowAnyMethod();
         }
     );
 });
@@ -61,7 +61,7 @@ app.UseHttpsRedirection();
 //Get around no CORS policy error
 app.UseStaticFiles();
 app.UseRouting();
-app.UseCors(/*MyAllowAllOrigins*/ MyAllowSpecificOrigins);
+app.UseCors(MyAllowAllOrigins /*MyAllowSpecificOrigins*/);
 
 app.UseAuthorization();
 
