@@ -14,14 +14,17 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowAllOrigins,
         policy =>
         {
-            policy.AllowAnyOrigin().AllowAnyMethod();;
+            policy.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
         }
     );
     options.AddPolicy(name: MyAllowSpecificOrigins,
         policy =>
         {
             policy.WithOrigins("http://localhost:5015", "http://localhost:7213")
-                .AllowAnyMethod();
+                .AllowAnyMethod()
+                .AllowAnyHeader();
         }
     );
 });
