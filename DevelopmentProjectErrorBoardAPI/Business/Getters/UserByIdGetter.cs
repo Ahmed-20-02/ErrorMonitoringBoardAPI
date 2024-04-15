@@ -13,7 +13,7 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
             _getUserByUserId = getUserByUserId;
         }
 
-        public async Task<User> Get(int userId)
+        public async Task<User> Get(int? userId)
         {
             try
             {

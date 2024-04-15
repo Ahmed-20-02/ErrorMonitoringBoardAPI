@@ -5,8 +5,8 @@ namespace DevelopmentProjectErrorBoardAPI.Services
 
     public interface IEmailService
     {
-        void SendEmail(User agent, User dev, int customerId, int status);
-        StringBuilder BuildEmail(User user, User dev, int customerId, int status);
+        void SendEmail(User agent, User dev, int? customerId, int status);
+        StringBuilder BuildEmail(User user, User dev, int? customerId, int status);
         string GetEnumDescription(Enum value);
     }
 }

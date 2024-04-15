@@ -17,7 +17,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
             _logger = logger;
         }
 
-        public async Task<User> Get(int userId)
+        public async Task<User> Get(int? userId)
         {
             _logger.Log("Getting Errors");
 

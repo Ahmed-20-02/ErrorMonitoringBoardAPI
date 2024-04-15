@@ -4,6 +4,6 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces
 
     public interface IUserByIdGetter
     {
-        Task<User> Get(int userId);
+        Task<User> Get(int? userId);
     }
 }

@@ -4,6 +4,6 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces
 
     public interface IGetUserByUserIdQuery
     {
-        Task<User> Get(int userId);
+        Task<User> Get(int? userId);
     }
 }

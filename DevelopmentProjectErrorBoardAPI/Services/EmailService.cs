@@ -12,7 +12,7 @@
         string Sender = "errorboardsystem.proj@gmail.com";
         string Password = "yfoo qete ognm hlpo";
 
-        public void SendEmail(User agent, User dev, int customerId, int status)
+        public void SendEmail(User agent, User dev, int? customerId, int status)
         {
             StringBuilder emailTemplate = BuildEmail(agent, dev, customerId, status);
 
@@ -25,7 +25,7 @@
             Client.Send(mail);
         }
 
-        public StringBuilder BuildEmail(User user, User dev, int customerId, int status)
+        public StringBuilder BuildEmail(User user, User dev, int? customerId, int status)
         {
             StringBuilder template = new StringBuilder();
 

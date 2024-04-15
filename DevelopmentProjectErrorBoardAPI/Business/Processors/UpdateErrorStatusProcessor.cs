@@ -25,10 +25,13 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors
         {
            var error = _errorStatusUpdater.Update(model.ErrorId, model.StatusId);
 
-           var agent = _userByIdGetter.Get(model.AgentId);
-           var dev = _userByIdGetter.Get(model.DevId);
-           
-           _emailService.SendEmail(agent.Result, dev.Result, model.CustomerId, model.StatusId);
+           if(model.CustomerId != null && model.AgentId != 1)
+           {     var agent = _userByIdGetter.Get(model.AgentId);
+               var dev = _userByIdGetter.Get(model.DevId);
+               
+               _emailService.SendEmail(agent.Result, dev.Result, model.CustomerId, model.StatusId);
+           }
+      
            return error;
         }
     }
