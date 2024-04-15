@@ -36,5 +36,9 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Entities
         [Column("StatusId"), ForeignKey("StatusId")]
         public Status Status { get; set; }
         public int StatusId { get; set; }
+        
+        [Column("CustomerId"), ForeignKey("CustomerId")]
+        public User? Customer { get; set; } 
+        public int? CustomerId { get; set; }
     }
 }

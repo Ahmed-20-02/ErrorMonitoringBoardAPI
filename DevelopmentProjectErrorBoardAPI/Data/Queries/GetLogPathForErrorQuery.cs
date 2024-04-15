@@ -21,9 +21,17 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
         {
             _logger.Log($"Getting Log path for Error {errorId}");
 
-            using (var context = _contextFactory.CreateDbContext())
+            try
             {
-                return context.ErrorLogPaths.Where(x => x.ErrorId == errorId).ToListAsync().Result;
+                using (var context = _contextFactory.CreateDbContext())
+                {
+                    return context.ErrorLogPaths.Where(x => x.ErrorId == errorId).ToListAsync().Result;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
             }
         }
     }

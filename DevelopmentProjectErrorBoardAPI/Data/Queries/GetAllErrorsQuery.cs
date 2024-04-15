@@ -21,9 +21,17 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
         {
             _logger.Log("Getting Errors");
 
-            using (var context = _contextFactory.CreateDbContext())
+            try
             {
-                return context.Errors.ToListAsync().Result;
+                using (var context = _contextFactory.CreateDbContext())
+                {
+                    return context.Errors.ToListAsync().Result;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
             }
         }
     }

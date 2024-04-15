@@ -19,5 +19,7 @@ namespace DevelopmentProjectErrorBoardAPI.Resources
         public int StatusId { get; set; }
         
         public string Message { get; set; }
+        
+        public int? CustomerId { get; set; }
     }
 }

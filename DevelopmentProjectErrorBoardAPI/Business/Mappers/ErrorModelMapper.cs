@@ -18,7 +18,8 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Mappers
                 AgentId = error.AgentId,
                 DeveloperId = error.DeveloperId,
                 StatusId = error.StatusId,
-                Message = error.Message
+                Message = error.Message,
+                CustomerId = error.CustomerId
             };
         }
 

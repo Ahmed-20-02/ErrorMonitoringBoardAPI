@@ -1,4 +1,5 @@
 using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
+using DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Data;
 using DevelopmentProjectErrorBoardAPI.Data.Entities;
@@ -19,19 +20,23 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         private readonly IAllErrorsGetter _allErrorsGetter;
         private readonly IUnresolvedErrorsGetter _unresolvedErrorsGetter;
         private readonly IErrorStatusUpdater _errorStatusUpdater;
+        private readonly IUpdateErrorStatusProcessor _updateErrorStatusProcessor;
         private readonly ILogger _logger;
+        
         
         public ErrorsController(IDbContextFactory<DataContext> contextFactory, 
             IAllErrorsGetter allErrorsGetter, 
             ILogger logger, 
             IUnresolvedErrorsGetter unresolvedErrorsGetter, 
-            IErrorStatusUpdater errorStatusUpdater)
+            IErrorStatusUpdater errorStatusUpdater, 
+            IUpdateErrorStatusProcessor updateErrorStatusProcessor)
         {
             _contextFactory = contextFactory;
             _allErrorsGetter = allErrorsGetter;
             _logger = logger;
             _unresolvedErrorsGetter = unresolvedErrorsGetter;
             _errorStatusUpdater = errorStatusUpdater;
+            _updateErrorStatusProcessor = updateErrorStatusProcessor;
         }
 
         [HttpGet("GetAllErrors")]
@@ -55,7 +60,7 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             _logger.Log($"GetAllErrors Called for ErrorId{model.ErrorId} updating to status {model.StatusId} ");
             try
             {
-                var error = _errorStatusUpdater.Update(model.ErrorId, model.StatusId);
+                var error = _updateErrorStatusProcessor.Process(model); //_errorStatusUpdater.Update(model.ErrorId, model.StatusId);
                 return new OkObjectResult(error);
             }
             catch (Exception e)

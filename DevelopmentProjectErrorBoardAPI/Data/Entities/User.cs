@@ -24,5 +24,6 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Entities
         
         [Column("RoleId"), ForeignKey("RoleId")]
         public Role Role { get; set; }   
+        public int RoleId { get; set; }
     }
 }
