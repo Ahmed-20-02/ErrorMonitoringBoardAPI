@@ -2,8 +2,8 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces
 {
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
 
-    public interface IGetUserByUserIdQuery
+    public interface IGetUserByEmailAndPasswordQuery
     {
-        Task<User> Get(int? userId);
+        Task<User> Get(string email, string password);
     }
 }

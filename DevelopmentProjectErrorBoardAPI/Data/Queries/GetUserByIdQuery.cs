@@ -5,12 +5,12 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
     using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
 
-    public class GetUserByUserIdQuery : IGetUserByUserIdQuery
+    public class GetUserByIdQuery : IGetUserByIdQuery
     {
         private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly ILogger _logger;
 
-        public GetUserByUserIdQuery(IDbContextFactory<DataContext> contextFactory,
+        public GetUserByIdQuery(IDbContextFactory<DataContext> contextFactory,
             ILogger logger)
         {
             _contextFactory = contextFactory;
@@ -19,7 +19,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
 
         public async Task<User> Get(int? userId)
         {
-            _logger.Log("Getting Errors");
+            _logger.Log($"Getting user by user id {userId}");
 
             try
             {

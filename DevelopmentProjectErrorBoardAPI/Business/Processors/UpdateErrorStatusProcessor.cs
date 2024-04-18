@@ -5,6 +5,7 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors
     using DevelopmentProjectErrorBoardAPI.Resources;
     using DevelopmentProjectErrorBoardAPI.Services;
     using DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces;
+    using DevelopmentProjectErrorBoardAPI.Enums;
     
     public class UpdateErrorStatusProcessor : IUpdateErrorStatusProcessor
     {
@@ -23,16 +24,25 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors
 
         public ErrorModel Process(UpdateErrorStatusModel model)
         {
-           var error = _errorStatusUpdater.Update(model.ErrorId, model.StatusId);
 
-           if(model.CustomerId != null && model.AgentId != 1)
-           {     var agent = _userByIdGetter.Get(model.AgentId);
-               var dev = _userByIdGetter.Get(model.DevId);
+            try
+            {
+                var error = _errorStatusUpdater.Update(model.ErrorId, model.StatusId);
+
+                if(model.CustomerId != null && model.AgentId != (int)RolesEnum.System)
+                {     var agent = _userByIdGetter.Get(model.AgentId);
+                    var dev = _userByIdGetter.Get(model.DevId);
                
-               _emailService.SendEmail(agent.Result, dev.Result, model.CustomerId, model.StatusId);
-           }
+                    _emailService.SendEmail(agent.Result, dev.Result, model.CustomerId, model.StatusId);
+                }
       
-           return error;
+                return error;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

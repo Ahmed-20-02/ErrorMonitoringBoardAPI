@@ -22,6 +22,5 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Mappers
                 CustomerId = error.CustomerId
             };
         }
-
     }
 }

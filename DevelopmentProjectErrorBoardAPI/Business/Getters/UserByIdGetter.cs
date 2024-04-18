@@ -6,9 +6,9 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
     
     public class UserByIdGetter : IUserByIdGetter
     {
-        private readonly IGetUserByUserIdQuery _getUserByUserId;
+        private readonly IGetUserByIdQuery _getUserByUserId;
 
-        public UserByIdGetter(IGetUserByUserIdQuery getUserByUserId)
+        public UserByIdGetter(IGetUserByIdQuery getUserByUserId)
         {
             _getUserByUserId = getUserByUserId;
         }
