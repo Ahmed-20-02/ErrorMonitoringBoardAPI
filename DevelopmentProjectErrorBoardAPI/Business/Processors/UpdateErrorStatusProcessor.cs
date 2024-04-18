@@ -24,10 +24,9 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors
 
         public ErrorModel Process(UpdateErrorStatusModel model)
         {
-
             try
             {
-                var error = _errorStatusUpdater.Update(model.ErrorId, model.StatusId);
+                var error = _errorStatusUpdater.Update(model.ErrorId, model.StatusId, model.DevId);
 
                 if(model.CustomerId != null && model.AgentId != (int)RolesEnum.System)
                 {     var agent = _userByIdGetter.Get(model.AgentId);

@@ -18,9 +18,9 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Updaters
             _errorModelMapper = errorModelMapper;
         }
 
-        public ErrorModel Update(int errorId, int statusId)
+        public ErrorModel Update(int errorId, int statusId, int devId)
         {
-            var error = this._updateErrorStatus.Update(errorId, statusId);
+            var error = this._updateErrorStatus.Update(errorId, statusId, devId);
             var mappedError = _errorModelMapper.Map(error);
             
             return mappedError;

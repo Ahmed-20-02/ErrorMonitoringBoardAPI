@@ -17,7 +17,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Updaters
             _logger = logger;
         }
 
-        public Error Update(int errorId, int statusId)
+        public Error Update(int errorId, int statusId, int devId)
         {
             _logger.Log($"Updating errorId {errorId} status to {(StatusEnum)statusId} ");
 
@@ -33,6 +33,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Updaters
                     {
                         // Update the record
                         error.StatusId = statusId;
+                        error.DeveloperId = devId;
                 
                         context.SaveChanges();
                     }
