@@ -16,6 +16,7 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly IAllErrorsGetter _allErrorsGetter;
         private readonly IUnresolvedErrorsGetter _unresolvedErrorsGetter;
+        private readonly IUsersByRoleIdGetter _usersByRoleIdGetter;
         private readonly IErrorStatusUpdater _errorStatusUpdater;
         private readonly IUserPasswordUpdater _userPasswordUpdater;
         private readonly IUpdateErrorStatusProcessor _updateErrorStatusProcessor;
@@ -29,7 +30,8 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             IErrorStatusUpdater errorStatusUpdater, 
             IUpdateErrorStatusProcessor updateErrorStatusProcessor, 
             IDevLogInCheckProcessor devLogInCheckProcessor, 
-            IUserPasswordUpdater userPasswordUpdater)
+            IUserPasswordUpdater userPasswordUpdater, 
+            IUsersByRoleIdGetter usersByRoleIdGetter)
         {
             _contextFactory = contextFactory;
             _allErrorsGetter = allErrorsGetter;
@@ -39,6 +41,7 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             _updateErrorStatusProcessor = updateErrorStatusProcessor;
             _devLogInCheckProcessor = devLogInCheckProcessor;
             _userPasswordUpdater = userPasswordUpdater;
+            _usersByRoleIdGetter = usersByRoleIdGetter;
         }
 
         [HttpGet("GetAllErrors")]
@@ -48,6 +51,21 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             try
             {
                 return new OkObjectResult(_unresolvedErrorsGetter.Get().ErrorsAndPaths);
+            }
+            catch (Exception e)
+            {
+                _logger.Log($"GetAllErrors Failed");
+                return new BadRequestObjectResult(e.Message);
+            }
+        }
+        
+        [HttpGet("GetUsersByRoleId/{id}")]
+        public IActionResult Get(int id)
+        {
+            _logger.Log($"GetUsersByRoleId Called With Role Id {id}");
+            try
+            {
+                return new OkObjectResult(_usersByRoleIdGetter.Get(id));
             }
             catch (Exception e)
             {
