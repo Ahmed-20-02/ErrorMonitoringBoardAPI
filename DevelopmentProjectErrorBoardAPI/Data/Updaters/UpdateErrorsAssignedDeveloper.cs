@@ -3,23 +3,23 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Updaters
     using Microsoft.EntityFrameworkCore;
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
-    using DevelopmentProjectErrorBoardAPI.Enums;
+    using DevelopmentProjectErrorBoardAPI.Data.Updaters.Interfaces;
 
-    public class UpdateErrorStatus : IUpdateErrorStatus
+    public class UpdateErrorsAssignedDeveloper : IUpdateErrorsAssignedDeveloper
     {
         private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly ILogger _logger;
 
-        public UpdateErrorStatus(IDbContextFactory<DataContext> contextFactory,
+        public UpdateErrorsAssignedDeveloper(IDbContextFactory<DataContext> contextFactory,
             ILogger logger)
         {
             _contextFactory = contextFactory;
             _logger = logger;
         }
 
-        public Error Update(int errorId, int statusId, int devId)
+        public Error Update(int errorId, int devId)
         {
-            _logger.Log($"Updating errorId {errorId} status to {(StatusEnum)statusId} ");
+            _logger.Log($"Updating errorId {errorId} dev to {devId} ");
 
             try
             {
@@ -31,9 +31,9 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Updaters
                     // Check if the record exists
                     if (error != null)
                     {
+                        
                         // Update the record
-                        error.StatusId = statusId;
-                       // error.DeveloperId = devId;
+                        error.DeveloperId = devId== 1 ? null : devId;
                 
                         context.SaveChanges();
                     }

@@ -1,3 +1,5 @@
+using DevelopmentProjectErrorBoardAPI.Enums;
+
 namespace DevelopmentProjectErrorBoardAPI.Business.Getters
 {
     using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
@@ -5,25 +7,34 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
     using DevelopmentProjectErrorBoardAPI.Resources;
     using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
     
-    public class UsersByRoleIdGetter : IUsersByRoleIdGetter
+    public class DevelopersGetter : IDevelopersGetter
     {
         private readonly IGetUsersByRoleIdQuery _getUsersByRoleIdQuery;
         private readonly IUserModelMapper _userModelMapper;
 
-        public UsersByRoleIdGetter(IGetUsersByRoleIdQuery getUsersByRoleIdQuery, 
+        public DevelopersGetter(IGetUsersByRoleIdQuery getUsersByRoleIdQuery, 
             IUserModelMapper userModelMapper)
         {
             _getUsersByRoleIdQuery = getUsersByRoleIdQuery;
             _userModelMapper = userModelMapper;
         }
 
-        public List<UserModel> Get(int roleId)
+        public List<UserModel> Get()
         {
             try
             {
-                var users = _getUsersByRoleIdQuery.Get(roleId).Result;
+                var users = _getUsersByRoleIdQuery.Get((int)RolesEnum.Developer).Result;
                 var userModels = new List<UserModel>();
 
+                userModels.Add(new UserModel()
+                {
+                    EmailAddress = "Unassigned",
+                    FirstName = "Unassigned",
+                    LastName = " ",
+                    RoleId = 2,
+                    UserId = 1
+                });
+                
                 for (int i = 0; i < users.Count; i++)
                 {
                     userModels.Add(_userModelMapper.Map(users[i]));

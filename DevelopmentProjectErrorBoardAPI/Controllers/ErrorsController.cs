@@ -2,6 +2,7 @@ using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Data;
+using DevelopmentProjectErrorBoardAPI.Data.Updaters;
 using DevelopmentProjectErrorBoardAPI.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,9 +17,10 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly IAllErrorsGetter _allErrorsGetter;
         private readonly IUnresolvedErrorsGetter _unresolvedErrorsGetter;
-        private readonly IUsersByRoleIdGetter _usersByRoleIdGetter;
+        private readonly IDevelopersGetter _developersGetter;
         private readonly IErrorStatusUpdater _errorStatusUpdater;
         private readonly IUserPasswordUpdater _userPasswordUpdater;
+        private readonly IErrorsAssignedDeveloperUpdater _errorsAssignedDeveloperUpdater;
         private readonly IUpdateErrorStatusProcessor _updateErrorStatusProcessor;
         private readonly IDevLogInCheckProcessor _devLogInCheckProcessor;
         private readonly ILogger _logger;
@@ -31,7 +33,8 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             IUpdateErrorStatusProcessor updateErrorStatusProcessor, 
             IDevLogInCheckProcessor devLogInCheckProcessor, 
             IUserPasswordUpdater userPasswordUpdater, 
-            IUsersByRoleIdGetter usersByRoleIdGetter)
+            IDevelopersGetter developersGetter,
+            IErrorsAssignedDeveloperUpdater errorsAssignedDeveloperUpdater)
         {
             _contextFactory = contextFactory;
             _allErrorsGetter = allErrorsGetter;
@@ -41,11 +44,12 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             _updateErrorStatusProcessor = updateErrorStatusProcessor;
             _devLogInCheckProcessor = devLogInCheckProcessor;
             _userPasswordUpdater = userPasswordUpdater;
-            _usersByRoleIdGetter = usersByRoleIdGetter;
+            _developersGetter = developersGetter;
+            _errorsAssignedDeveloperUpdater = errorsAssignedDeveloperUpdater;
         }
 
         [HttpGet("GetAllErrors")]
-        public IActionResult Get()
+        public IActionResult GetAllErrors()
         {
             _logger.Log("GetAllErrors Called");
             try
@@ -59,13 +63,13 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             }
         }
         
-        [HttpGet("GetUsersByRoleId/{id}")]
-        public IActionResult Get(int id)
+        [HttpGet("GetDevelopers")]
+        public IActionResult GetDevelopers()
         {
-            _logger.Log($"GetUsersByRoleId Called With Role Id {id}");
+            _logger.Log($"GetDevelopers Called");
             try
             {
-                return new OkObjectResult(_usersByRoleIdGetter.Get(id));
+                return new OkObjectResult(_developersGetter.Get());
             }
             catch (Exception e)
             {
@@ -86,6 +90,24 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             catch (Exception e)
             {
                 _logger.Log($"GetAllErrors Failed for ErrorId{model.ErrorId} updating to status {model.StatusId} ");
+
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        
+        [HttpPut("UpdateErrorsAssignedDeveloper")]
+        public IActionResult UpdateErrorsAssignedDeveloper([FromBody] UpdateErrorsAssignedDeveloperModel model)
+        {
+            _logger.Log($"UpdateErrorsAssignedDeveloper Called for ErrorId{model.ErrorId} updating to dev {model.DevId} ");
+            try
+            {
+                var error = _errorsAssignedDeveloperUpdater.Update(model);
+                return new OkObjectResult(error);
+            }
+            catch (Exception e)
+            {
+                _logger.Log($"UpdateErrorsAssignedDeveloper Failed for ErrorId{model.ErrorId} updating to dev {model.DevId} ");
 
                 Console.WriteLine(e);
                 throw;

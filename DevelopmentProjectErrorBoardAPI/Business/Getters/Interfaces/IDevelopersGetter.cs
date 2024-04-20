@@ -2,8 +2,8 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces
 {
     using DevelopmentProjectErrorBoardAPI.Resources;
 
-    public interface IUsersByRoleIdGetter
+    public interface IDevelopersGetter
     {
-        List<UserModel> Get(int roleId);
+        List<UserModel> Get();
     }
 }
