@@ -14,7 +14,7 @@ namespace DevelopmentProjectErrorBoardAPI.Resources
         
         public int AgentId { get; set; }
         
-        public int DeveloperId { get; set; }
+        public int? DeveloperId { get; set; }
         
         public int StatusId { get; set; }
         

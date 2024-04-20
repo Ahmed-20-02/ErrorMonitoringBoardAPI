@@ -30,8 +30,8 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Entities
         public int AgentId { get; set; }
         
         [Column("DeveloperId"), ForeignKey("DeveloperId")]
-        public User Developer { get; set; } 
-        public int DeveloperId { get; set; }
+        public User? Developer { get; set; } 
+        public int? DeveloperId { get; set; }
         
         [Column("StatusId"), ForeignKey("StatusId")]
         public Status Status { get; set; }
