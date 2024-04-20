@@ -4,7 +4,9 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
     using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
-
+    using BCrypt.Net;
+    using DevelopmentProjectErrorBoardAPI.Services;
+    
     public class GetUserByEmailAndPasswordQuery : IGetUserByEmailAndPasswordQuery
     {
         private readonly IDbContextFactory<DataContext> _contextFactory;
@@ -25,8 +27,12 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
             {
                 using (var context = _contextFactory.CreateDbContext())
                 {
-                    return context.Users.FirstOrDefaultAsync(x => x.EmailAddress == email 
-                                                                  && x.Password == password).Result;
+                    var user = context.Users.FirstOrDefaultAsync(x => x.EmailAddress == email);
+                    if (user.Result == null)
+                    {
+                        return null;
+                    }
+                     return PasswordService.VerifyPassword(password, user.Result.Password) ? user.Result : null;
                 }
             }
             catch (Exception e)
@@ -34,6 +40,11 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
                 Console.WriteLine(e);
                 throw;
             }
+        }
+        
+        public static bool VerifyPassword(string password, string hash)
+        {
+            return BCrypt.Verify(password, hash);
         }
     }
 }

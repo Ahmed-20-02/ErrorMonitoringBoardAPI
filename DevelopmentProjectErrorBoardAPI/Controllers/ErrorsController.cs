@@ -2,9 +2,6 @@ using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Data;
-using DevelopmentProjectErrorBoardAPI.Data.Entities;
-using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
-using DevelopmentProjectErrorBoardAPI.Data.Updaters;
 using DevelopmentProjectErrorBoardAPI.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +17,7 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         private readonly IAllErrorsGetter _allErrorsGetter;
         private readonly IUnresolvedErrorsGetter _unresolvedErrorsGetter;
         private readonly IErrorStatusUpdater _errorStatusUpdater;
+        private readonly IUserPasswordUpdater _userPasswordUpdater;
         private readonly IUpdateErrorStatusProcessor _updateErrorStatusProcessor;
         private readonly IDevLogInCheckProcessor _devLogInCheckProcessor;
         private readonly ILogger _logger;
@@ -30,7 +28,8 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             IUnresolvedErrorsGetter unresolvedErrorsGetter, 
             IErrorStatusUpdater errorStatusUpdater, 
             IUpdateErrorStatusProcessor updateErrorStatusProcessor, 
-            IDevLogInCheckProcessor devLogInCheckProcessor)
+            IDevLogInCheckProcessor devLogInCheckProcessor, 
+            IUserPasswordUpdater userPasswordUpdater)
         {
             _contextFactory = contextFactory;
             _allErrorsGetter = allErrorsGetter;
@@ -39,6 +38,7 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             _errorStatusUpdater = errorStatusUpdater;
             _updateErrorStatusProcessor = updateErrorStatusProcessor;
             _devLogInCheckProcessor = devLogInCheckProcessor;
+            _userPasswordUpdater = userPasswordUpdater;
         }
 
         [HttpGet("GetAllErrors")]
@@ -87,6 +87,20 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             {
                 _logger.Log($"LogIn Failed for user email {model.EmailAddress}");
 
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        
+        [HttpPost("TestingUpdatePassword")]
+        public IActionResult TestingUpdatePassword(int userId, string password)
+        {
+            try
+            {
+                return new OkObjectResult(_userPasswordUpdater.Update(userId, password));
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine(e);
                 throw;
             }
