@@ -5,31 +5,30 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
     using DevelopmentProjectErrorBoardAPI.Resources;    
     using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
 
-    public class UnresolvedErrorsGetter : IUnresolvedErrorsGetter
+    public class ActiveErrorsGetter : IActiveErrorsGetter
     {
-        private readonly IGetUnresolvedErrorsQuery _getUnresolvedErrorsQuery;
+        private readonly IGetActiveErrorsQuery _getActiveErrorsQuery;
         private readonly IGetLogPathForErrorQuery _getLogPathForErrorQuery;
         private readonly IErrorModelMapper _errorModelMapper;
         private readonly IErrorLogPathModelMapper _errorLogPathModelMapper;
 
-        public UnresolvedErrorsGetter(IGetUnresolvedErrorsQuery getUnresolvedErrorsQuery, 
+        public ActiveErrorsGetter(IGetActiveErrorsQuery getActiveErrorsQuery, 
             IGetLogPathForErrorQuery getLogPathForErrorQuery, 
             IErrorModelMapper errorModelMapper, 
             IErrorLogPathModelMapper errorLogPathModelMapper)
         {
-            _getUnresolvedErrorsQuery = getUnresolvedErrorsQuery;
+            _getActiveErrorsQuery = getActiveErrorsQuery;
             _getLogPathForErrorQuery = getLogPathForErrorQuery;
             _errorModelMapper = errorModelMapper;
             _errorLogPathModelMapper = errorLogPathModelMapper;
         }
 
-        public ErrorAndPathListModel Get()
+        public List<ErrorAndPathModel> Get()
         {
             try
             {
-                var unresolvedErrors = _getUnresolvedErrorsQuery.Get().Result;
-                var errors = new ErrorAndPathListModel();
-                errors.ErrorsAndPaths = new List<ErrorAndPathModel>();
+                var unresolvedErrors = _getActiveErrorsQuery.Get().Result;
+                var errors = new List<ErrorAndPathModel>();
 
                 for (int i = 0; i < unresolvedErrors.Count; i++)
                 {
@@ -47,7 +46,7 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
                         }
                     }
                 
-                    errors.ErrorsAndPaths.Add(errorPathModel);
+                    errors.Add(errorPathModel);
                 }
 
                 return errors;

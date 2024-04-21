@@ -4,13 +4,14 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
     using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
+    using DevelopmentProjectErrorBoardAPI.Enums;
 
-    public class GetAllErrorsQuery : IGetAllErrorsQuery
+    public class GetActiveErrorsQuery : IGetActiveErrorsQuery
     {
         private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly ILogger _logger;
 
-        public GetAllErrorsQuery(IDbContextFactory<DataContext> contextFactory,
+        public GetActiveErrorsQuery(IDbContextFactory<DataContext> contextFactory,
             ILogger logger)
         {
             _contextFactory = contextFactory;
@@ -25,7 +26,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
             {
                 using (var context = _contextFactory.CreateDbContext())
                 {
-                    return context.Errors.ToListAsync().Result;
+                    return context.Errors.Where(x => x.IsActive).ToListAsync().Result;
                 }
             }
             catch (Exception e)

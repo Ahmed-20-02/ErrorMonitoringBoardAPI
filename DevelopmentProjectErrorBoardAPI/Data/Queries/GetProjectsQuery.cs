@@ -4,30 +4,28 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
     using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
-    using DevelopmentProjectErrorBoardAPI.Enums;
 
-    public class GetUnresolvedErrorsQuery : IGetUnresolvedErrorsQuery
+    public class GetProjectsQuery : IGetProjectsQuery
     {
         private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly ILogger _logger;
 
-        public GetUnresolvedErrorsQuery(IDbContextFactory<DataContext> contextFactory,
+        public GetProjectsQuery(IDbContextFactory<DataContext> contextFactory,
             ILogger logger)
         {
             _contextFactory = contextFactory;
             _logger = logger;
         }
 
-        public async Task<List<Error>> Get()
+        public async Task<List<Project>> Get()
         {
-            _logger.Log("Getting Errors");
+            _logger.Log("Getting Projects");
 
             try
             {
                 using (var context = _contextFactory.CreateDbContext())
                 {
-                    return context.Errors.Where(x => x.StatusId != (int)StatusEnum.Resolved
-                                                     && x.StatusId != (int)StatusEnum.Cancelled).ToListAsync().Result;
+                    return context.Projects.ToListAsync().Result;
                 }
             }
             catch (Exception e)

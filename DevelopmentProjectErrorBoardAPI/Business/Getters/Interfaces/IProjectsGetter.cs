@@ -2,8 +2,8 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces
 {
     using DevelopmentProjectErrorBoardAPI.Resources;
 
-    public interface IUnresolvedErrorsGetter
+    public interface IProjectsGetter
     {
-        ErrorAndPathListModel Get();
+        List<ProjectModel> Get();
     }
 }

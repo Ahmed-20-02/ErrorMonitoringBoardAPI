@@ -1,11 +1,10 @@
-using DevelopmentProjectErrorBoardAPI.Enums;
-
 namespace DevelopmentProjectErrorBoardAPI.Business.Getters
 {
     using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Resources;
     using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
+    using DevelopmentProjectErrorBoardAPI.Enums;
     
     public class DevelopersGetter : IDevelopersGetter
     {

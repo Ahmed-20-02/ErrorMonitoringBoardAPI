@@ -1,9 +1,9 @@
-namespace DevelopmentProjectErrorBoardAPI.Data.Updaters
+namespace DevelopmentProjectErrorBoardAPI.Data.Commands
 {
     using Microsoft.EntityFrameworkCore;
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
-    using DevelopmentProjectErrorBoardAPI.Data.Updaters.Interfaces;
+    using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
 
     public class UpdateErrorsAssignedDeveloper : IUpdateErrorsAssignedDeveloper
     {
@@ -25,14 +25,13 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Updaters
             {
                 using (var context = _contextFactory.CreateDbContext())
                 {
-                    // Find the specific record based on ID
+                    // Find the specific error
                     var error = context.Errors.FirstOrDefault(e => e.ErrorId == errorId);
                     
-                    // Check if the record exists
+                    // Check if the error exists
                     if (error != null)
                     {
-                        
-                        // Update the record
+                        // Update the error
                         error.DeveloperId = devId== 1 ? null : devId;
                 
                         context.SaveChanges();

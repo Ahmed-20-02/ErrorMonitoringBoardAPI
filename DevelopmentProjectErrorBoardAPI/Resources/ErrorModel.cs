@@ -20,6 +20,10 @@ namespace DevelopmentProjectErrorBoardAPI.Resources
         
         public string Message { get; set; }
         
+        public bool IsActive { get; set; }
+        
+        public int ProjectId { get; set; }
+        
         public int? CustomerId { get; set; }
     }
 }

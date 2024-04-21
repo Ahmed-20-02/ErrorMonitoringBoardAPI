@@ -32,7 +32,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
                     {
                         return null;
                     }
-                     return PasswordService.VerifyPassword(password, user.Result.Password) ? user.Result : null;
+                    return PasswordService.VerifyPassword(password, user.Result.Password) ? user.Result : null;
                 }
             }
             catch (Exception e)

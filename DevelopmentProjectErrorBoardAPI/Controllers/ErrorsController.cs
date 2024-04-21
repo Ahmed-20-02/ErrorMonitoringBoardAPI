@@ -2,7 +2,7 @@ using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Data;
-using DevelopmentProjectErrorBoardAPI.Data.Updaters;
+using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,51 +14,64 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
     [Route("[controller]")]
     public class ErrorsController : ControllerBase
     {
-        private readonly IDbContextFactory<DataContext> _contextFactory;
-        private readonly IAllErrorsGetter _allErrorsGetter;
-        private readonly IUnresolvedErrorsGetter _unresolvedErrorsGetter;
+        private readonly IActiveErrorsGetter _activeErrorsGetter;
         private readonly IDevelopersGetter _developersGetter;
-        private readonly IErrorStatusUpdater _errorStatusUpdater;
+        private readonly IProjectsGetter _projectsGetter;
         private readonly IUserPasswordUpdater _userPasswordUpdater;
         private readonly IErrorsAssignedDeveloperUpdater _errorsAssignedDeveloperUpdater;
         private readonly IUpdateErrorStatusProcessor _updateErrorStatusProcessor;
+        private readonly IDeactivateError _deactivateError;
         private readonly IDevLogInCheckProcessor _devLogInCheckProcessor;
         private readonly ILogger _logger;
         
-        public ErrorsController(IDbContextFactory<DataContext> contextFactory, 
-            IAllErrorsGetter allErrorsGetter, 
+        public ErrorsController(
             ILogger logger, 
-            IUnresolvedErrorsGetter unresolvedErrorsGetter, 
-            IErrorStatusUpdater errorStatusUpdater, 
+            IActiveErrorsGetter activeErrorsGetter, 
             IUpdateErrorStatusProcessor updateErrorStatusProcessor, 
             IDevLogInCheckProcessor devLogInCheckProcessor, 
             IUserPasswordUpdater userPasswordUpdater, 
             IDevelopersGetter developersGetter,
-            IErrorsAssignedDeveloperUpdater errorsAssignedDeveloperUpdater)
+            IErrorsAssignedDeveloperUpdater errorsAssignedDeveloperUpdater, 
+            IDeactivateError deactivateError, 
+            IProjectsGetter projectsGetter)
         {
-            _contextFactory = contextFactory;
-            _allErrorsGetter = allErrorsGetter;
             _logger = logger;
-            _unresolvedErrorsGetter = unresolvedErrorsGetter;
-            _errorStatusUpdater = errorStatusUpdater;
+            _activeErrorsGetter = activeErrorsGetter;
             _updateErrorStatusProcessor = updateErrorStatusProcessor;
             _devLogInCheckProcessor = devLogInCheckProcessor;
             _userPasswordUpdater = userPasswordUpdater;
             _developersGetter = developersGetter;
             _errorsAssignedDeveloperUpdater = errorsAssignedDeveloperUpdater;
+            _deactivateError = deactivateError;
+            _projectsGetter = projectsGetter;
         }
 
-        [HttpGet("GetAllErrors")]
-        public IActionResult GetAllErrors()
+        [HttpGet("GetErrors")]
+        public IActionResult GetErrors()
         {
             _logger.Log("GetAllErrors Called");
             try
             {
-                return new OkObjectResult(_unresolvedErrorsGetter.Get().ErrorsAndPaths);
+                return new OkObjectResult(_activeErrorsGetter.Get());
             }
             catch (Exception e)
             {
                 _logger.Log($"GetAllErrors Failed");
+                return new BadRequestObjectResult(e.Message);
+            }
+        }
+        
+        [HttpGet("GetProjects")]
+        public IActionResult GetProjects()
+        {
+            _logger.Log("GetProjects Called");
+            try
+            {
+                return new OkObjectResult(_projectsGetter.Get());
+            }
+            catch (Exception e)
+            {
+                _logger.Log($"GetProjects Failed");
                 return new BadRequestObjectResult(e.Message);
             }
         }
@@ -90,6 +103,24 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             catch (Exception e)
             {
                 _logger.Log($"GetAllErrors Failed for ErrorId{model.ErrorId} updating to status {model.StatusId} ");
+
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        
+        [HttpPut("DeactivateError")]
+        public IActionResult DeactivateError([FromBody] DeactivateErrorModel model)
+        {
+            _logger.Log($"DeactivateError Called for ErrorId{model.ErrorId}");
+            try
+            {
+                var error = _deactivateError.Deactivate(model.ErrorId);
+                return new OkObjectResult(error);
+            }
+            catch (Exception e)
+            {
+                _logger.Log($"DeactivateError Failed for ErrorId{model.ErrorId}");
 
                 Console.WriteLine(e);
                 throw;

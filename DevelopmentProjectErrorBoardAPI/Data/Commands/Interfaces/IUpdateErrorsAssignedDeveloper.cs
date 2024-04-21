@@ -1,5 +1,4 @@
-
-namespace DevelopmentProjectErrorBoardAPI.Data.Updaters.Interfaces
+namespace DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces
 {
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
 

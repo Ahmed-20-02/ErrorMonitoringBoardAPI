@@ -19,6 +19,8 @@ namespace DevelopmentProjectErrorBoardAPI.Data
         
         public DbSet<Error> Errors { get; set; }
         
+        public DbSet<Project> Projects { get; set; }
+        
         public DbSet<ErrorLogPath> ErrorLogPaths { get; set; }
         
     }

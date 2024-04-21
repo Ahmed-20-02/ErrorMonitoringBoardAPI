@@ -3,12 +3,12 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Entities
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     
-    [Table("status")]
-    public class Status
+    [Table("project")]
+    public class Project
     {
         [Key]
-        [Column("StatusId")]
-        public int StatusId { get; set; }
+        [Column("ProjectId")]
+        public int ProjectId { get; set; }
         
         [Column("Name")]
         public string Name { get; set; }

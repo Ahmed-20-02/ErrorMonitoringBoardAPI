@@ -2,7 +2,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces
 {
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
 
-    public interface IGetUnresolvedErrorsQuery
+    public interface IGetActiveErrorsQuery
     {
         Task<List<Error>> Get();
     }

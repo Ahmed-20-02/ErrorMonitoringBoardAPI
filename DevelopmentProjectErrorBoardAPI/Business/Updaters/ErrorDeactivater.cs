@@ -1,27 +1,27 @@
 namespace DevelopmentProjectErrorBoardAPI.Business.Updaters
 {
-    using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Resources;
     using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
+    using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
 
-    public class ErrorsAssignedDeveloperUpdater : IErrorsAssignedDeveloperUpdater
+    public class ErrorDeactivater : IErrorDeactivater
     {
-        private readonly IUpdateErrorsAssignedDeveloper _updateErrorsAssignedDeveloper;
+        private readonly IDeactivateError _deactivateError;
         private readonly IErrorModelMapper _errorModelMapper;
 
-        public ErrorsAssignedDeveloperUpdater(IErrorModelMapper errorModelMapper, 
-            IUpdateErrorsAssignedDeveloper updateErrorsAssignedDeveloper)
+        public ErrorDeactivater(IDeactivateError deactivateError, 
+            IErrorModelMapper errorModelMapper)
         {
+            _deactivateError = deactivateError;
             _errorModelMapper = errorModelMapper;
-            _updateErrorsAssignedDeveloper = updateErrorsAssignedDeveloper;
         }
 
-        public ErrorModel Update(UpdateErrorsAssignedDeveloperModel model)
+        public ErrorModel Deactivate(int errorId)
         {
             try
             {
-                var error = this._updateErrorsAssignedDeveloper.Update(model.ErrorId, model.DevId);
+                var error = this._deactivateError.Deactivate(errorId);
                 var mappedError = _errorModelMapper.Map(error);
             
                 return mappedError;

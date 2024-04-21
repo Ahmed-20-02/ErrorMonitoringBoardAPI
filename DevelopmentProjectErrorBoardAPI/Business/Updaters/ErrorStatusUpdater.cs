@@ -1,10 +1,9 @@
-
 namespace DevelopmentProjectErrorBoardAPI.Business.Updaters
 {
-    using DevelopmentProjectErrorBoardAPI.Data.Updaters;
     using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Resources;
+    using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
 
     public class ErrorStatusUpdater : IErrorStatusUpdater
     {
@@ -20,10 +19,18 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Updaters
 
         public ErrorModel Update(int errorId, int statusId, int devId)
         {
-            var error = this._updateErrorStatus.Update(errorId, statusId, devId);
-            var mappedError = _errorModelMapper.Map(error);
+            try
+            {
+                var error = this._updateErrorStatus.Update(errorId, statusId, devId);
+                var mappedError = _errorModelMapper.Map(error);
             
-            return mappedError;
+                return mappedError;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

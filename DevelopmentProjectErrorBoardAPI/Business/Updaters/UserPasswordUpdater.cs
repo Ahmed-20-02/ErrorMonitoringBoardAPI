@@ -1,8 +1,8 @@
 namespace DevelopmentProjectErrorBoardAPI.Business.Updaters
 {
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
-    using DevelopmentProjectErrorBoardAPI.Data.Updaters.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
+    using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
 
     public class UserPasswordUpdater : IUserPasswordUpdater
     {
@@ -15,9 +15,17 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Updaters
 
         public User Update(int userId, string password)
         {
-            var user = this._updateUserPassword.Update(userId, password);
+            try
+            {
+                var user = this._updateUserPassword.Update(userId, password);
             
-            return user;
+                return user;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

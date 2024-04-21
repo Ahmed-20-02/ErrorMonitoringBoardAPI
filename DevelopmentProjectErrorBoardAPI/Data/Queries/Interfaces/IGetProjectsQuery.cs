@@ -2,8 +2,8 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces
 {
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
 
-    public interface IGetAllErrorsQuery
+    public interface IGetProjectsQuery
     {
-        Task<List<Error>> Get();
+        Task<List<Project>> Get();
     }
 }

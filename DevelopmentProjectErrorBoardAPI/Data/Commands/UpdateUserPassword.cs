@@ -1,9 +1,9 @@
-namespace DevelopmentProjectErrorBoardAPI.Data.Updaters
+namespace DevelopmentProjectErrorBoardAPI.Data.Commands
 {
     using Microsoft.EntityFrameworkCore;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
-    using DevelopmentProjectErrorBoardAPI.Data.Updaters.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Services;
+    using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
 
     public class UpdateUserPassword : IUpdateUserPassword
     {

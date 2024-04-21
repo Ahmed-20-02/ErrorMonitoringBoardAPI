@@ -19,7 +19,9 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Mappers
                 DeveloperId = error.DeveloperId,
                 StatusId = error.StatusId,
                 Message = error.Message,
-                CustomerId = error.CustomerId
+                CustomerId = error.CustomerId,
+                IsActive = error.IsActive,
+                ProjectId = error.ProjectId
             };
         }
     }

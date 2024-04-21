@@ -25,6 +25,9 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Entities
         [Column("Message")]
         public string Message { get; set; }
         
+        [Column("IsActive")]
+        public bool IsActive { get; set; }
+        
         [Column("AgentId"), ForeignKey("AgentId")]
         public User Agent { get; set; } 
         public int AgentId { get; set; }
@@ -40,5 +43,9 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Entities
         [Column("CustomerId"), ForeignKey("CustomerId")]
         public User? Customer { get; set; } 
         public int? CustomerId { get; set; }
+        
+        [Column("ProjectId"), ForeignKey("ProjectId")]
+        public Project Project { get; set; }
+        public int ProjectId { get; set; }
     }
 }
