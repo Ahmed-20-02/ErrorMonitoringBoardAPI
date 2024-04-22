@@ -17,7 +17,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
             _logger = logger;
         }
 
-        public Error Deactivate(int errorId)
+        public async Task<Error> Deactivate(int errorId)
         {
             _logger.Log($"Deactivating errorId {errorId}");
 
@@ -26,7 +26,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
                 using (var context = _contextFactory.CreateDbContext())
                 {
                     // Find the specific error
-                    var error = context.Errors.FirstOrDefault(e => e.ErrorId == errorId);
+                    var error = await context.Errors.FirstOrDefaultAsync(e => e.ErrorId == errorId);
                     
                     // Check if the error exists
                     if (error != null)

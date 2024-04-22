@@ -4,6 +4,6 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces
 
     public interface IDeactivateError
     {
-        Error Deactivate(int errorId);
+        Task<Error> Deactivate(int errorId);
     }
 }

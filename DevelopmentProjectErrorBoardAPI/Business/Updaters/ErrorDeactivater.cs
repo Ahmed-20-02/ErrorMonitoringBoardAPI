@@ -17,11 +17,11 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Updaters
             _errorModelMapper = errorModelMapper;
         }
 
-        public ErrorModel Deactivate(int errorId)
+        public async Task<ErrorModel> Deactivate(int errorId)
         {
             try
             {
-                var error = this._deactivateError.Deactivate(errorId);
+                var error = await this._deactivateError.Deactivate(errorId);
                 var mappedError = _errorModelMapper.Map(error);
             
                 return mappedError;

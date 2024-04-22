@@ -4,6 +4,6 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces
 
     public interface IActiveErrorsGetter
     {
-        List<ErrorAndPathModel> Get();
+       Task <List<ErrorAndPathModel>> Get();
     }
 }

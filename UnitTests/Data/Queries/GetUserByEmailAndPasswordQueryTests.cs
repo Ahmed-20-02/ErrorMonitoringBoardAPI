@@ -1,18 +1,20 @@
-namespace DevelopmentProjectErrorBoardAPI.Data.Queries
+namespace UnitTests.Data.Queries
 {
     using Microsoft.EntityFrameworkCore;
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
-    using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
+    using DevelopmentProjectErrorBoardAPI.Data;
+    using DevelopmentProjectErrorBoardAPI.Data.Queries;    
     using BCrypt.Net;
     using DevelopmentProjectErrorBoardAPI.Services;
+    using Moq;
     
-    public class GetUserByEmailAndPasswordQuery : IGetUserByEmailAndPasswordQuery
+    public class GetUserByEmailAndPasswordQueryTests : TestBase<GetUserByEmailAndPasswordQuery>
     {
         private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly ILogger _logger;
 
-        public GetUserByEmailAndPasswordQuery(IDbContextFactory<DataContext> contextFactory,
+        public GetUserByEmailAndPasswordQueryTests(IDbContextFactory<DataContext> contextFactory,
             ILogger logger)
         {
             _contextFactory = contextFactory;
@@ -32,7 +34,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
                     {
                         return null;
                     }
-                    return PasswordService.VerifyPassword(password, user.Password) ? user : null;
+                   return PasswordService.VerifyPassword(password, user.Password) ? user : null;
                 }
             }
             catch (Exception e)

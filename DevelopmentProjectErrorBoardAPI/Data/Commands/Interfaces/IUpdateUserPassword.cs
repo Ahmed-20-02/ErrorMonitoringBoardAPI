@@ -4,6 +4,6 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces
 
     public interface IUpdateUserPassword
     {
-        User Update(int userId, string password);
+        Task<User> Update(int userId, string password);
     }
 }

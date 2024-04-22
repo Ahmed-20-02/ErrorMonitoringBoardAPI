@@ -4,6 +4,6 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces
 
     public interface IUpdateErrorsAssignedDeveloper
     {
-        Error Update(int errorId, int devId);
+        Task<Error> Update(int errorId, int devId);
     }
 }

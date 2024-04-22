@@ -4,6 +4,6 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces
 
     public interface IUserPasswordUpdater
     {
-        User Update(int userId, string password);
+        Task<User> Update(int userId, string password);
     }
 }

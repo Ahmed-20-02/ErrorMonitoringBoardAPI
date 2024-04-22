@@ -26,7 +26,8 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
             {
                 using (var context = _contextFactory.CreateDbContext())
                 {
-                    return context.Errors.Where(x => x.IsActive).ToListAsync().Result;
+                    var errors = await context.Errors.Where(x => x.IsActive).ToListAsync();
+                    return errors;
                 }
             }
             catch (Exception e)

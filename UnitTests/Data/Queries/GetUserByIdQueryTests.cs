@@ -1,33 +1,34 @@
-namespace DevelopmentProjectErrorBoardAPI.Data.Queries
+namespace UnitTests.Data.Queries
 {
     using Microsoft.EntityFrameworkCore;
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
-    using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
+    using DevelopmentProjectErrorBoardAPI.Data;
+    using DevelopmentProjectErrorBoardAPI.Data.Queries;
+    using Moq;
 
-    public class GetProjectsQuery : IGetProjectsQuery
+    public class GetUserByIdQueryTests : TestBase<GetUserByIdQuery>
     {
         private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly ILogger _logger;
 
-        public GetProjectsQuery(IDbContextFactory<DataContext> contextFactory,
+        public GetUserByIdQueryTests(IDbContextFactory<DataContext> contextFactory,
             ILogger logger)
         {
             _contextFactory = contextFactory;
             _logger = logger;
         }
 
-        public async Task<List<Project>> Get()
+        public async Task<User> Get(int? userId)
         {
-            _logger.Log("Getting Projects");
+            _logger.Log($"Getting user by user id {userId}");
 
             try
             {
                 using (var context = _contextFactory.CreateDbContext())
                 {
-                    var projects = await context.Projects.ToListAsync();
-                    return projects;
-                }
+                    var result = await context.Users.FirstOrDefaultAsync(x => x.UserId == userId);
+                    return result;                }
             }
             catch (Exception e)
             {

@@ -4,6 +4,6 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces
 
     public interface IUpdateErrorStatusProcessor
     {
-        ErrorModel Process(UpdateErrorStatusModel model);
+        Task<ErrorModel> Process(UpdateErrorStatusModel model);
     }
 }

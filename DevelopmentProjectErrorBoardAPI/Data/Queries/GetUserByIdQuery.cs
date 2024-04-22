@@ -25,7 +25,8 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
             {
                 using (var context = _contextFactory.CreateDbContext())
                 {
-                    return context.Users.FirstOrDefaultAsync(x => x.UserId == userId).Result;
+                    var user = await context.Users.FirstOrDefaultAsync(x => x.UserId == userId);
+                    return user;
                 }
             }
             catch (Exception e)

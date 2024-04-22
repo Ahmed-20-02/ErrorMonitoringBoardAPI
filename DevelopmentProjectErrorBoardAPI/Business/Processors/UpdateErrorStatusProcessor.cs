@@ -22,17 +22,17 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors
             _userByIdGetter = userByIdGetter;
         }
 
-        public ErrorModel Process(UpdateErrorStatusModel model)
+        public async Task<ErrorModel> Process(UpdateErrorStatusModel model)
         {
             try
             {
-                var error = _errorStatusUpdater.Update(model.ErrorId, model.StatusId, model.DevId);
+                var error = await _errorStatusUpdater.Update(model.ErrorId, model.StatusId, model.DevId);
 
                 if(model.CustomerId != null && model.AgentId != (int)RolesEnum.System)
-                {     var agent = _userByIdGetter.Get(model.AgentId);
-                    var dev = _userByIdGetter.Get(model.DevId);
+                {     var agent = await _userByIdGetter.Get(model.AgentId);
+                    var dev = await _userByIdGetter.Get(model.DevId);
                
-                    _emailService.SendEmail(agent.Result, dev.Result, model.CustomerId, model.StatusId);
+                    _emailService.SendEmail(agent, dev, model.CustomerId, model.StatusId);
                 }
       
                 return error;

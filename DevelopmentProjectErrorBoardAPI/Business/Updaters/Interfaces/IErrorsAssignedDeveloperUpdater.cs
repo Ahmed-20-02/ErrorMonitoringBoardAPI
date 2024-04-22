@@ -4,6 +4,6 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces
 
     public interface IErrorsAssignedDeveloperUpdater
     {
-        ErrorModel Update(UpdateErrorsAssignedDeveloperModel model);
+        Task<ErrorModel> Update(UpdateErrorsAssignedDeveloperModel model);
     }
 }

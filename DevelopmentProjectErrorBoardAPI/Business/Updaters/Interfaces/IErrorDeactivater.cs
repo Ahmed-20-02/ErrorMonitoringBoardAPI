@@ -4,6 +4,6 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces
 
     public interface IErrorDeactivater
     {
-        ErrorModel Deactivate(int errorId);
+        Task<ErrorModel> Deactivate(int errorId);
     }
 }

@@ -14,14 +14,14 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
             _contextFactory = contextFactory;
         }
 
-        public User Update(int userId, string password)
+        public async Task<User> Update(int userId, string password)
         {
             try
             {
                 using (var context = _contextFactory.CreateDbContext())
                 {
                     // Find the specific record based on ID
-                    var user = context.Users.FirstOrDefault(u => u.UserId == userId);
+                    var user = await context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
                     
                     // Check if the record exists
                     if (user != null)

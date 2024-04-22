@@ -1,16 +1,18 @@
-namespace DevelopmentProjectErrorBoardAPI.Data.Queries
+namespace UnitTests.Data.Queries
 {
     using Microsoft.EntityFrameworkCore;
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
-    using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
+    using DevelopmentProjectErrorBoardAPI.Data;
+    using DevelopmentProjectErrorBoardAPI.Data.Queries;
+    using Moq;
 
-    public class GetProjectsQuery : IGetProjectsQuery
+    public class GetProjectsQueryTests : TestBase<GetProjectsQuery>
     {
         private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly ILogger _logger;
 
-        public GetProjectsQuery(IDbContextFactory<DataContext> contextFactory,
+        public GetProjectsQueryTests(IDbContextFactory<DataContext> contextFactory,
             ILogger logger)
         {
             _contextFactory = contextFactory;
@@ -25,9 +27,8 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
             {
                 using (var context = _contextFactory.CreateDbContext())
                 {
-                    var projects = await context.Projects.ToListAsync();
-                    return projects;
-                }
+                    var result = await context.Projects.ToListAsync();
+                    return result;                }
             }
             catch (Exception e)
             {

@@ -13,11 +13,11 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Updaters
             _updateUserPassword = updateUserPassword;
         }
 
-        public User Update(int userId, string password)
+        public async Task<User> Update(int userId, string password)
         {
             try
             {
-                var user = this._updateUserPassword.Update(userId, password);
+                var user = await this._updateUserPassword.Update(userId, password);
             
                 return user;
             }

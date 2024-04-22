@@ -23,26 +23,26 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
             _errorLogPathModelMapper = errorLogPathModelMapper;
         }
 
-        public List<ErrorAndPathModel> Get()
+        public async Task <List<ErrorAndPathModel>>Get()
         {
             try
             {
-                var unresolvedErrors = _getActiveErrorsQuery.Get().Result;
+                var unresolvedErrors = await _getActiveErrorsQuery.Get();
                 var errors = new List<ErrorAndPathModel>();
 
                 for (int i = 0; i < unresolvedErrors.Count; i++)
                 {
-                    var logPaths = _getLogPathForErrorQuery.Get(unresolvedErrors[i].ErrorId);
+                    var logPaths = await _getLogPathForErrorQuery.Get(unresolvedErrors[i].ErrorId);
 
                     var errorPathModel = new ErrorAndPathModel();
                     errorPathModel.Error = _errorModelMapper.Map(unresolvedErrors[i]);
                     errorPathModel.LogPaths = new List<ErrorLogPathModel>();
 
-                    if (logPaths.Result.Count > 0)
+                    if (logPaths.Count > 0)
                     {
-                        for (int y = 0; y < logPaths.Result.Count; y++)
+                        for (int y = 0; y < logPaths.Count; y++)
                         {
-                            errorPathModel.LogPaths.Add(_errorLogPathModelMapper.Map(logPaths.Result[y]));
+                            errorPathModel.LogPaths.Add(_errorLogPathModelMapper.Map(logPaths[y]));
                         }
                     }
                 

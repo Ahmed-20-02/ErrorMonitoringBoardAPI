@@ -18,11 +18,11 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
             _userModelMapper = userModelMapper;
         }
 
-        public List<UserModel> Get()
+        public async Task<List<UserModel>> Get()
         {
             try
             {
-                var users = _getUsersByRoleIdQuery.Get((int)RolesEnum.Developer).Result;
+                var users = await _getUsersByRoleIdQuery.Get((int)RolesEnum.Developer);
                 var userModels = new List<UserModel>();
 
                 userModels.Add(new UserModel()

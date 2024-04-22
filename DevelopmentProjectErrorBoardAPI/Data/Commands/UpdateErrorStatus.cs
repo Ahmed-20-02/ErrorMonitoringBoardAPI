@@ -18,7 +18,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
             _logger = logger;
         }
 
-        public Error Update(int errorId, int statusId, int devId)
+        public async Task<Error> Update(int errorId, int statusId, int devId)
         {
             _logger.Log($"Updating errorId {errorId} status to {(StatusEnum)statusId} ");
 
@@ -27,7 +27,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
                 using (var context = _contextFactory.CreateDbContext())
                 {
                     // Find the specific error
-                    var error = context.Errors.FirstOrDefault(e => e.ErrorId == errorId);
+                    var error = await context.Errors.FirstOrDefaultAsync(e => e.ErrorId == errorId);
                     
                     // Check if the error exists
                     if (error != null)

@@ -17,11 +17,11 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
             _projectModelMapper = projectModelMapper;
         }
         
-        public List<ProjectModel> Get()
+        public async Task<List<ProjectModel>> Get()
         {
             try
             {
-                var projects = _getProjectsQuery.Get().Result;
+                var projects = await _getProjectsQuery.Get();
                 var projectModels = new List<ProjectModel>();
                 
                 for (int i = 0; i < projects.Count; i++)

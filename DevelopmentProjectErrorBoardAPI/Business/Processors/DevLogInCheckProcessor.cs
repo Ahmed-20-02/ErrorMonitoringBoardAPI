@@ -18,29 +18,29 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors
             _userModelMapper = userModelMapper;
         }
 
-        public DevCheckLogInModel Process(LogInModel logInModel)
+        public async Task<DevCheckLogInModel> Process(LogInModel logInModel)
         {
             try
             {
-                var user = _userByEmailAndPasswordGetter.Get(logInModel.EmailAddress, logInModel.Password);
+                var user = await _userByEmailAndPasswordGetter.Get(logInModel.EmailAddress, logInModel.Password);
 
                 DevCheckLogInModel model = new DevCheckLogInModel();
 
-                if (user.Result == null)
+                if (user == null)
                 {
                     model.Message = "No user found with that email and password";
                     model.IsAuthenticated = false;
                 }
 
-                else if (user.Result.FirstName != string.Empty && user.Result.RoleId != (int)RolesEnum.Developer)
+                else if (user.FirstName != string.Empty && user.RoleId != (int)RolesEnum.Developer)
                 {
-                    model.Message = $"You should not be here {user.Result.FirstName}, fired.";
+                    model.Message = $"You should not be here {user.FirstName}, fired.";
                     model.IsAuthenticated = false;
                 }
 
-                else if (user.Result.FirstName != string.Empty && user.Result.RoleId == (int)RolesEnum.Developer)
+                else if (user.FirstName != string.Empty && user.RoleId == (int)RolesEnum.Developer)
                 {
-                    model.User = _userModelMapper.Map(user.Result);
+                    model.User = _userModelMapper.Map(user);
                     model.Message = "Log In Successful";
                     model.IsAuthenticated = true;
                 }

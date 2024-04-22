@@ -4,6 +4,6 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces
 
     public interface IDevelopersGetter
     {
-        List<UserModel> Get();
+        Task<List<UserModel>> Get();
     }
 }

@@ -17,7 +17,8 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
         {
             try
             {
-                return _getUserByUserId.Get(userId).Result;
+                var result = await _getUserByUserId.Get(userId);
+                return result;
             }
             catch (Exception e)
             {

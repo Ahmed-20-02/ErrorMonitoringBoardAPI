@@ -4,6 +4,6 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces
 
     public interface IDevLogInCheckProcessor
     {
-        DevCheckLogInModel Process(LogInModel logInModel);
+        Task<DevCheckLogInModel> Process(LogInModel logInModel);
     }
 }
