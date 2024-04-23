@@ -17,11 +17,11 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Updaters
             _errorModelMapper = errorModelMapper;
         }
 
-        public async Task<ErrorModel> Update(int errorId, int statusId, int devId)
+        public async Task<ErrorModel> Update(int errorId, int statusId)
         {
             try
             {
-                var error = await this._updateErrorStatus.Update(errorId, statusId, devId);
+                var error = await this._updateErrorStatus.Update(errorId, statusId);
                 var mappedError = _errorModelMapper.Map(error);
             
                 return mappedError;

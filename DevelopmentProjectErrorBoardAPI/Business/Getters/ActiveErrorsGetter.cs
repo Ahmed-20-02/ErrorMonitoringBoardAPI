@@ -2,7 +2,7 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
 {
     using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
-    using DevelopmentProjectErrorBoardAPI.Resources;    
+    using DevelopmentProjectErrorBoardAPI.Resources;
     using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
 
     public class ActiveErrorsGetter : IActiveErrorsGetter
@@ -12,9 +12,9 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
         private readonly IErrorModelMapper _errorModelMapper;
         private readonly IErrorLogPathModelMapper _errorLogPathModelMapper;
 
-        public ActiveErrorsGetter(IGetActiveErrorsQuery getActiveErrorsQuery, 
-            IGetLogPathForErrorQuery getLogPathForErrorQuery, 
-            IErrorModelMapper errorModelMapper, 
+        public ActiveErrorsGetter(IGetActiveErrorsQuery getActiveErrorsQuery,
+            IGetLogPathForErrorQuery getLogPathForErrorQuery,
+            IErrorModelMapper errorModelMapper,
             IErrorLogPathModelMapper errorLogPathModelMapper)
         {
             _getActiveErrorsQuery = getActiveErrorsQuery;
@@ -23,7 +23,7 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
             _errorLogPathModelMapper = errorLogPathModelMapper;
         }
 
-        public async Task <List<ErrorAndPathModel>>Get()
+        public async Task<List<ErrorAndPathModel>> Get()
         {
             try
             {
@@ -38,14 +38,14 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
                     errorPathModel.Error = _errorModelMapper.Map(unresolvedErrors[i]);
                     errorPathModel.LogPaths = new List<ErrorLogPathModel>();
 
-                    if (logPaths.Count > 0)
+                    if (logPaths != null && logPaths.Any())
                     {
                         for (int y = 0; y < logPaths.Count; y++)
                         {
                             errorPathModel.LogPaths.Add(_errorLogPathModelMapper.Map(logPaths[y]));
                         }
                     }
-                
+
                     errors.Add(errorPathModel);
                 }
 

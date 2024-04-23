@@ -4,6 +4,6 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces
 
     public interface IErrorStatusUpdater
     {
-        Task<ErrorModel> Update(int errorId, int statusId, int devId);
+        Task<ErrorModel> Update(int errorId, int statusId);
     }
 }

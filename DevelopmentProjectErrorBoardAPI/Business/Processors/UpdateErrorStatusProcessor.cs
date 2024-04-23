@@ -6,15 +6,15 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors
     using DevelopmentProjectErrorBoardAPI.Services;
     using DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Enums;
-    
+
     public class UpdateErrorStatusProcessor : IUpdateErrorStatusProcessor
     {
         private readonly IErrorStatusUpdater _errorStatusUpdater;
         private readonly IEmailService _emailService;
         private readonly IUserByIdGetter _userByIdGetter;
 
-        public UpdateErrorStatusProcessor(IErrorStatusUpdater errorStatusUpdater, 
-            IEmailService emailService, 
+        public UpdateErrorStatusProcessor(IErrorStatusUpdater errorStatusUpdater,
+            IEmailService emailService,
             IUserByIdGetter userByIdGetter)
         {
             _errorStatusUpdater = errorStatusUpdater;
@@ -26,15 +26,16 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors
         {
             try
             {
-                var error = await _errorStatusUpdater.Update(model.ErrorId, model.StatusId, model.DevId);
+                var error = await _errorStatusUpdater.Update(model.ErrorId, model.StatusId);
 
-                if(model.CustomerId != null && model.AgentId != (int)RolesEnum.System)
-                {     var agent = await _userByIdGetter.Get(model.AgentId);
+                if (model.CustomerId != null && model.AgentId != (int)RolesEnum.System)
+                {
+                    var agent = await _userByIdGetter.Get(model.AgentId);
                     var dev = await _userByIdGetter.Get(model.DevId);
-               
+
                     _emailService.SendEmail(agent, dev, model.CustomerId, model.StatusId);
                 }
-      
+
                 return error;
             }
             catch (Exception e)

@@ -18,7 +18,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
             _logger = logger;
         }
 
-        public async Task<Error> Update(int errorId, int statusId, int devId)
+        public async Task<Error> Update(int errorId, int statusId)
         {
             _logger.Log($"Updating errorId {errorId} status to {(StatusEnum)statusId} ");
 

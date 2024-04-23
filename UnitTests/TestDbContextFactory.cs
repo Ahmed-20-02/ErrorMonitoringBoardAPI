@@ -7,9 +7,7 @@ namespace UnitTests
     public class TestDbContextFactory : IDbContextFactory<DataContext>
     {
         private DbContextOptions<DataContext> _options;
-
-        int errorIdOne = 10;
-
+        
         public TestDbContextFactory(string databaseName = "InMemoryTest")
         {
             _options = new DbContextOptionsBuilder<DataContext>()
@@ -29,15 +27,20 @@ namespace UnitTests
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
             
-            var role = new Role { RoleId = 2, Name = "" };
+            var role = new Role { RoleId = 2, Name = "dev" };
+            var roleTwo = new Role { RoleId = 3, Name = "agent" };
             var user = new User { UserId = 5, Password = "hello",Role = role, RoleId = role.RoleId, EmailAddress = "test@gmail.com", FirstName = "", LastName = ""};
+            var userTwo = new User { UserId = 10, Password = "hello",Role = roleTwo, RoleId = roleTwo.RoleId, EmailAddress = "test@gmail.com", FirstName = "", LastName = ""};
+
             var project = new Project { ProjectId = 5, Name = ""};
             var projectTwo = new Project { ProjectId = 7, Name = "ProjectTwo"};
-            var status = new Status { StatusId = 2, Name = ""};
+            var status = new Status { StatusId = 2, Name = "Active"};
+            var statusTwo = new Status { StatusId = 4, Name = "Inactive"};
+
 
             var errorOne = new Error
             {
-                ErrorId = errorIdOne, IsActive = true,
+                ErrorId = 10, IsActive = true,
                 Agent = user, AgentId = user.UserId, 
                 Project = project, ProjectId = project.ProjectId,
                 Message = "UNIT TEST", Status = status,
@@ -48,7 +51,7 @@ namespace UnitTests
             var errorTwo = new Error
             {
                 ErrorId = 12, IsActive = false,
-                Agent = user, AgentId = user.UserId,
+                Agent = userTwo, AgentId = userTwo.UserId,
                 Project = project, ProjectId = project.ProjectId,
                 Message = "UNIT TEST", Status = status,
                 StatusId = status.StatusId, CreatedDate = DateTime.Now,
@@ -94,9 +97,13 @@ namespace UnitTests
                 Error = errorTwo
             };
             
-            context.Users.Add(user);
             context.Projects.Add(project);
-            context.Statuses.Add(status);
+            
+            context.Statuses.AddRange(new List<Status>{status, statusTwo});
+            
+            context.Roles.AddRange(new List<Role>{role, roleTwo});
+            
+            context.Users.AddRange(new List<User>{user, userTwo});
             
             context.Errors.AddRange(new List<Error>
             {errorOne, errorTwo, errorThree});
