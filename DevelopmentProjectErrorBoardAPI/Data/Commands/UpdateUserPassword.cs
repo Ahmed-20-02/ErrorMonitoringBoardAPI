@@ -4,14 +4,18 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
     using DevelopmentProjectErrorBoardAPI.Services;
     using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
+    using DevelopmentProjectErrorBoardAPI.Services.Interfaces;
 
     public class UpdateUserPassword : IUpdateUserPassword
     {
         private readonly IDbContextFactory<DataContext> _contextFactory;
+        private readonly IPasswordService _passwordService;
 
-        public UpdateUserPassword(IDbContextFactory<DataContext> contextFactory)
+        public UpdateUserPassword(IDbContextFactory<DataContext> contextFactory, 
+            IPasswordService passwordService)
         {
             _contextFactory = contextFactory;
+            _passwordService = passwordService;
         }
 
         public async Task<User> Update(int userId, string password)
@@ -27,7 +31,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
                     if (user != null)
                     {
                         // Update the record
-                        user.Password = PasswordService.HashPassword(password);
+                        user.Password = _passwordService.HashPassword(password);
                         
                         context.SaveChanges();
                     }

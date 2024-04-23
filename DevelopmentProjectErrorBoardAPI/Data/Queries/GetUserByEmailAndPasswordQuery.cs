@@ -4,19 +4,21 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
     using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
-    using BCrypt.Net;
-    using DevelopmentProjectErrorBoardAPI.Services;
+    using DevelopmentProjectErrorBoardAPI.Services.Interfaces;
     
     public class GetUserByEmailAndPasswordQuery : IGetUserByEmailAndPasswordQuery
     {
         private readonly IDbContextFactory<DataContext> _contextFactory;
+        private readonly IPasswordService _passwordService;
         private readonly ILogger _logger;
 
         public GetUserByEmailAndPasswordQuery(IDbContextFactory<DataContext> contextFactory,
-            ILogger logger)
+            ILogger logger, 
+            IPasswordService passwordService)
         {
             _contextFactory = contextFactory;
             _logger = logger;
+            _passwordService = passwordService;
         }
 
         public async Task<User> Get(string email, string password)
@@ -32,7 +34,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
                     {
                         return null;
                     }
-                    return PasswordService.VerifyPassword(password, user.Password) ? user : null;
+                    return _passwordService.VerifyPassword(password, user.Password) ? user : null;
                 }
             }
             catch (Exception e)
@@ -40,11 +42,6 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Queries
                 Console.WriteLine(e);
                 throw;
             }
-        }
-        
-        public static bool VerifyPassword(string password, string hash)
-        {
-            return BCrypt.Verify(password, hash);
         }
     }
 }

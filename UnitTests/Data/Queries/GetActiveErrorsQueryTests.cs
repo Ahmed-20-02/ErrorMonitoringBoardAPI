@@ -2,66 +2,23 @@ namespace UnitTests.Data.Queries
 {
     using Microsoft.EntityFrameworkCore;
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
-    using DevelopmentProjectErrorBoardAPI.Data.Entities;
     using DevelopmentProjectErrorBoardAPI.Data;
     using DevelopmentProjectErrorBoardAPI.Data.Queries;
     using Moq;
 
     public class GetActiveErrorsQueryTests : TestBase<GetActiveErrorsQuery>
     {
+        //Data seeded in TestDbContextFactory file
+        
         [Fact]
-        public void GetReturnsActiveErrors()
+        public async Task GetReturnsActiveErrors()
         {
+            var expectedResultOne = 2;
+            var expectedResultTwo = 10;
             var context = new TestDbContextFactory().CreateDbContext();
             
-            Assert.Empty(context.Errors);
-
-            var role = new Role { RoleId = 2, Name = "" };
-            // Add required related entities
-            var user = new User { UserId = 5, Password = "",Role = role, RoleId = role.RoleId, EmailAddress = "", FirstName = "", LastName = ""};
-            var project = new Project { ProjectId = 5, Name = ""};
-            var status = new Status { StatusId = 2, Name = ""};
+            Assert.NotEmpty(context.Errors);
             
-            context.Users.Add(user);
-            context.Projects.Add(project);
-            context.Statuses.Add(status);
-            
-            context.Errors.AddRange(new List<Error>
-            {
-                new Error{
-                    ErrorId = 10,
-                    IsActive = true,
-                    Agent = user,
-                    AgentId = user.UserId,
-                    Project = project,
-                    ProjectId = project.ProjectId,
-                    Message = "UNIT TEST",
-                    Status = status,
-                    StatusId = status.StatusId,
-                    CreatedDate = DateTime.Now,
-                    UpdatedDate = DateTime.Now,
-                    LineNumber = 1,
-                    InitialFile = "file"
-                },
-                new Error{
-                    ErrorId = 12,
-                    IsActive = false,
-                    Agent = user,
-                    AgentId = user.UserId,
-                    Project = project,
-                    ProjectId = project.ProjectId,
-                    Message = "UNIT TEST",
-                    Status = status,
-                    StatusId = status.StatusId,
-                    CreatedDate = DateTime.Now,
-                    UpdatedDate = DateTime.Now,
-                    LineNumber = 1,
-                    InitialFile = "file"
-                }
-            });
-            
-             context.SaveChanges();
-
             this.AutoMocker.GetMock<ILogger>()
                 .Setup(x => x.Log(It.IsAny<string>()));
             
@@ -71,13 +28,13 @@ namespace UnitTests.Data.Queries
             
             var sut = this.CreateTestSubject();
 
-            var result = sut.Get();
+            var result = await sut.Get();
             
             Assert.NotNull(result);
             
-            Assert.Single(result.Result);
+            Assert.Equal(expectedResultOne, result.Count);
             
-            Assert.Equal(10, result.Result.FirstOrDefault()!.ErrorId);
+            Assert.Equal(expectedResultTwo, result.FirstOrDefault()!.ErrorId);
         }
         
         [Fact]

@@ -2,51 +2,86 @@ namespace UnitTests.Data.Queries
 {
     using Microsoft.EntityFrameworkCore;
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
-    using DevelopmentProjectErrorBoardAPI.Data.Entities;
     using DevelopmentProjectErrorBoardAPI.Data;
     using DevelopmentProjectErrorBoardAPI.Data.Queries;    
-    using BCrypt.Net;
-    using DevelopmentProjectErrorBoardAPI.Services;
+    using DevelopmentProjectErrorBoardAPI.Services.Interfaces;
     using Moq;
     
     public class GetUserByEmailAndPasswordQueryTests : TestBase<GetUserByEmailAndPasswordQuery>
     {
-        private readonly IDbContextFactory<DataContext> _contextFactory;
-        private readonly ILogger _logger;
-
-        public GetUserByEmailAndPasswordQueryTests(IDbContextFactory<DataContext> contextFactory,
-            ILogger logger)
+        //Data seeded in TestDbContextFactory file
+        
+        [Fact]
+        public async Task GetReturnsCorrectUser()
         {
-            _contextFactory = contextFactory;
-            _logger = logger;
-        }
+            string stubEmail = "test@gmail.com";
+            string stubPassword = "hello";
+                
+            var context = new TestDbContextFactory().CreateDbContext();
+            
+            Assert.NotEmpty(context.Users);
+            
+            this.AutoMocker.GetMock<ILogger>()
+                .Setup(x => x.Log(It.IsAny<string>()));
+            
+            this.AutoMocker.GetMock<IDbContextFactory<DataContext>>()
+                .Setup(x => x.CreateDbContext())
+                .Returns(context);
+            
+            this.AutoMocker.GetMock<IPasswordService>()
+                .Setup(x => x.VerifyPassword(stubPassword, It.IsAny<string>() ))
+                .Returns(true);
+            
+            var sut = this.CreateTestSubject();
 
-        public async Task<User> Get(string email, string password)
-        {
-            _logger.Log($"Getting user by email {email}");
-
-            try
-            {
-                using (var context = _contextFactory.CreateDbContext())
-                {
-                    var user = await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == email);
-                    if (user == null)
-                    {
-                        return null;
-                    }
-                   return PasswordService.VerifyPassword(password, user.Password) ? user : null;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            var result = await sut.Get(stubEmail, stubPassword);
+            
+            Assert.NotNull(result);
+            
+            Assert.Equal(5, result.UserId);
         }
         
-        public static bool VerifyPassword(string password, string hash)
+        [Fact]
+        public async Task GetReturnsNull()
         {
-            return BCrypt.Verify(password, hash);
+            string stubEmail = "test@gmail.com";
+            string stubPassword = "hello";
+                
+            var context = new TestDbContextFactory().CreateDbContext();
+            
+            Assert.NotEmpty(context.Users);
+            
+            this.AutoMocker.GetMock<ILogger>()
+                .Setup(x => x.Log(It.IsAny<string>()));
+            
+            this.AutoMocker.GetMock<IDbContextFactory<DataContext>>()
+                .Setup(x => x.CreateDbContext())
+                .Returns(context);
+            
+            this.AutoMocker.GetMock<IPasswordService>()
+                .Setup(x => x.VerifyPassword(stubPassword, It.IsAny<string>() ))
+                .Returns(false);
+            
+            var sut = this.CreateTestSubject();
+
+            var result = await sut.Get(stubEmail, stubPassword);
+            
+            Assert.Null(result);
+        }
+        
+        [Fact]
+        public async Task GetHitsException()
+        {
+            this.AutoMocker.GetMock<ILogger>()
+                .Setup(x => x.Log(It.IsAny<string>()))
+                .Throws(new Exception("ExceptionMessage"));
+
+            var sut = this.CreateTestSubject();
+
+            var ex = await Assert.ThrowsAsync<Exception>(() => sut.Get(It.IsAny<string>(), It.IsAny<string>()));
+    
+            Assert.IsType<Exception>(ex);
+            Assert.Equal("ExceptionMessage", ex.Message);
         }
     }
 }

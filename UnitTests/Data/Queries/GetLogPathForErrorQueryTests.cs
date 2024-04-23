@@ -2,39 +2,53 @@ namespace UnitTests.Data.Queries
 {
     using Microsoft.EntityFrameworkCore;
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
-    using DevelopmentProjectErrorBoardAPI.Data.Entities;
     using DevelopmentProjectErrorBoardAPI.Data;
     using DevelopmentProjectErrorBoardAPI.Data.Queries;
     using Moq;
 
     public class GetLogPathForErrorQueryTests : TestBase<GetLogPathForErrorQuery>
     {
-        private readonly IDbContextFactory<DataContext> _contextFactory;
-        private readonly ILogger _logger;
-
-        public GetLogPathForErrorQueryTests(IDbContextFactory<DataContext> contextFactory,
-            ILogger logger)
+        //Data seeded in TestDbContextFactory file
+        
+        [Theory]
+        [InlineData(10, 2)]
+        [InlineData(12, 1)]
+        [InlineData(14, 0)]
+        public async Task GetReturnsCorrectLogPaths(int errorId, int numberOfPaths)
         {
-            _contextFactory = contextFactory;
-            _logger = logger;
+            var context = new TestDbContextFactory().CreateDbContext();
+            
+            Assert.NotEmpty(context.ErrorLogPaths);
+            
+            this.AutoMocker.GetMock<ILogger>()
+                .Setup(x => x.Log(It.IsAny<string>()));
+            
+            this.AutoMocker.GetMock<IDbContextFactory<DataContext>>()
+                .Setup(x => x.CreateDbContext())
+                .Returns(context);
+            
+            var sut = this.CreateTestSubject();
+
+            var result = await sut.Get(errorId);
+            
+            Assert.NotNull(result);
+            
+            Assert.Equal(numberOfPaths, result.Count);
         }
-
-        public async Task<List<ErrorLogPath>> Get(int errorId)
+        
+        [Fact]
+        public async Task GetHitsException()
         {
-            _logger.Log($"Getting Log path for Error {errorId}");
+            this.AutoMocker.GetMock<ILogger>()
+                .Setup(x => x.Log(It.IsAny<string>()))
+                .Throws(new Exception("ExceptionMessage"));
 
-            try
-            {
-                using (var context = _contextFactory.CreateDbContext())
-                {
-                    var result = await context.ErrorLogPaths.Where(x => x.ErrorId == errorId).ToListAsync();
-                    return result;                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            var sut = this.CreateTestSubject();
+
+            var ex = await Assert.ThrowsAsync<Exception>(() => sut.Get(It.IsAny<int>()));
+    
+            Assert.IsType<Exception>(ex);
+            Assert.Equal("ExceptionMessage", ex.Message);
         }
     }
 }

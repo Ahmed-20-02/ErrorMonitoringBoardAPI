@@ -2,39 +2,51 @@ namespace UnitTests.Data.Queries
 {
     using Microsoft.EntityFrameworkCore;
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
-    using DevelopmentProjectErrorBoardAPI.Data.Entities;
     using DevelopmentProjectErrorBoardAPI.Data;
     using DevelopmentProjectErrorBoardAPI.Data.Queries;
     using Moq;
 
     public class GetUserByIdQueryTests : TestBase<GetUserByIdQuery>
     {
-        private readonly IDbContextFactory<DataContext> _contextFactory;
-        private readonly ILogger _logger;
-
-        public GetUserByIdQueryTests(IDbContextFactory<DataContext> contextFactory,
-            ILogger logger)
+        [Fact]
+        public async Task GetReturnsUser()
         {
-            _contextFactory = contextFactory;
-            _logger = logger;
+            var stubEmail = "test@gmail.com";
+            var stubUserId = 5;
+            var context = new TestDbContextFactory().CreateDbContext();
+            
+            Assert.NotEmpty(context.Errors);
+            
+            this.AutoMocker.GetMock<ILogger>()
+                .Setup(x => x.Log(It.IsAny<string>()));
+            
+            this.AutoMocker.GetMock<IDbContextFactory<DataContext>>()
+                .Setup(x => x.CreateDbContext())
+                .Returns(context);
+            
+            var sut = this.CreateTestSubject();
+
+            var result = await sut.Get(stubUserId);
+            
+            Assert.NotNull(result);
+            
+            Assert.Equal(stubUserId, result.UserId);
+            Assert.Equal(stubEmail, result.EmailAddress);
         }
-
-        public async Task<User> Get(int? userId)
+        
+        [Fact]
+        public async Task GetHitsException()
         {
-            _logger.Log($"Getting user by user id {userId}");
+            this.AutoMocker.GetMock<ILogger>()
+                .Setup(x => x.Log(It.IsAny<string>()))
+                .Throws(new Exception("ExceptionMessage"));
 
-            try
-            {
-                using (var context = _contextFactory.CreateDbContext())
-                {
-                    var result = await context.Users.FirstOrDefaultAsync(x => x.UserId == userId);
-                    return result;                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            var sut = this.CreateTestSubject();
+
+            var ex = await Assert.ThrowsAsync<Exception>(() => sut.Get(It.IsAny<int>()));
+    
+            Assert.IsType<Exception>(ex);
+            Assert.Equal("ExceptionMessage", ex.Message);
         }
     }
 }
