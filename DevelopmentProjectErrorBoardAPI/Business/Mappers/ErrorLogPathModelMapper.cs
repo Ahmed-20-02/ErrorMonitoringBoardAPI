@@ -8,13 +8,21 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Mappers
     {
         public ErrorLogPathModel Map(ErrorLogPath logPath)
         {
-            return new ErrorLogPathModel()
+            try
             {
-                ErrorLogPathId = logPath.ErrorLogPathId,
-                ErrorId = logPath.ErrorId,
-                FileName = logPath.FileName,
-                CreatedDate = logPath.CreatedDate,
-            };
+                return new ErrorLogPathModel()
+                {
+                    ErrorLogPathId = logPath.ErrorLogPathId,
+                    ErrorId = logPath.ErrorId,
+                    FileName = logPath.FileName,
+                    CreatedDate = logPath.CreatedDate,
+                };
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

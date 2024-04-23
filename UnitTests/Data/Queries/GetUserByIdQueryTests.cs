@@ -1,7 +1,7 @@
 namespace UnitTests.Data.Queries
 {
     using Microsoft.EntityFrameworkCore;
-    using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
+    using DevelopmentProjectErrorBoardAPI.Logger;
     using DevelopmentProjectErrorBoardAPI.Data;
     using DevelopmentProjectErrorBoardAPI.Data.Queries;
     using Moq;

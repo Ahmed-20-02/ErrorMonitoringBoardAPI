@@ -8,21 +8,29 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Mappers
     {
         public ErrorModel Map(Error error)
         {
-            return new ErrorModel()
+            try
             {
-                ErrorId = error.ErrorId,
-                InitialFile = error.InitialFile,
-                LineNumber = error.LineNumber,
-                CreatedDate = error.CreatedDate,
-                UpdatedDate = error.UpdatedDate,
-                AgentId = error.AgentId,
-                DeveloperId = error.DeveloperId,
-                StatusId = error.StatusId,
-                Message = error.Message,
-                CustomerId = error.CustomerId,
-                IsActive = error.IsActive,
-                ProjectId = error.ProjectId
-            };
+                return new ErrorModel()
+                {
+                    ErrorId = error.ErrorId,
+                    InitialFile = error.InitialFile,
+                    LineNumber = error.LineNumber,
+                    CreatedDate = error.CreatedDate,
+                    UpdatedDate = error.UpdatedDate,
+                    AgentId = error.AgentId,
+                    DeveloperId = error.DeveloperId,
+                    StatusId = error.StatusId,
+                    Message = error.Message,
+                    CustomerId = error.CustomerId,
+                    IsActive = error.IsActive,
+                    ProjectId = error.ProjectId
+                };
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

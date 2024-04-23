@@ -8,14 +8,22 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Mappers
     {
         public UserModel Map(User user)
         {
-            return new UserModel()
+            try
             {
-                UserId = user.UserId,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                EmailAddress = user.EmailAddress, 
-                RoleId = user.RoleId,
-            };
+                return new UserModel()
+                {
+                    UserId = user.UserId,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    EmailAddress = user.EmailAddress, 
+                    RoleId = user.RoleId,
+                };
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

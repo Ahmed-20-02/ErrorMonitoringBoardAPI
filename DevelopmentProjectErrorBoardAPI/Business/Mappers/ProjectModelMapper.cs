@@ -8,11 +8,19 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Mappers
     {
         public ProjectModel Map(Project project)
         {
-            return new ProjectModel()
+            try
             {
-                ProjectId = project.ProjectId,
-                ProjectName = project.Name
-            };
+                return new ProjectModel()
+                {
+                    ProjectId = project.ProjectId,
+                    ProjectName = project.Name
+                };
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }
