@@ -33,6 +33,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
                     {
                         // Update the error
                         error.IsActive = false;
+                        error.UpdatedDate = DateTime.Now;
                         
                         context.SaveChanges();
                     }

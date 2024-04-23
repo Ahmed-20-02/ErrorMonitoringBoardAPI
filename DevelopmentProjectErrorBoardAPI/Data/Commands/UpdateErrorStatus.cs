@@ -34,6 +34,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
                     {
                         // Update the error
                         error.StatusId = statusId;
+                        error.UpdatedDate = DateTime.Now;
                         
                         context.SaveChanges();
                     }

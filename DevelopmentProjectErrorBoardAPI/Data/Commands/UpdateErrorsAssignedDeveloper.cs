@@ -33,6 +33,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
                     {
                         // Update the error
                         error.DeveloperId = devId == 1 ? null : devId;
+                        error.UpdatedDate = DateTime.Now;
                 
                         context.SaveChanges();
                     }
