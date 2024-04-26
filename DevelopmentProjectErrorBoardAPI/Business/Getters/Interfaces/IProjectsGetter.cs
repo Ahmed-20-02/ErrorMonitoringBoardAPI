@@ -1,6 +1,6 @@
 namespace DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces
 {
-    using DevelopmentProjectErrorBoardAPI.Resources;
+    using DevelopmentProjectErrorBoardAPI.Resources.Models;
 
     public interface IProjectsGetter
     {

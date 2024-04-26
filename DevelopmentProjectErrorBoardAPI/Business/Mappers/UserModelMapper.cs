@@ -1,7 +1,7 @@
 namespace DevelopmentProjectErrorBoardAPI.Business.Mappers
 {
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
-    using DevelopmentProjectErrorBoardAPI.Resources;
+    using DevelopmentProjectErrorBoardAPI.Resources.Models;
     using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
     
     public class UserModelMapper : IUserModelMapper

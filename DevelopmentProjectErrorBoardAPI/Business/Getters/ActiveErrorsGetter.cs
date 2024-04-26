@@ -2,7 +2,7 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
 {
     using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
-    using DevelopmentProjectErrorBoardAPI.Resources;
+    using DevelopmentProjectErrorBoardAPI.Resources.Models;
     using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
 
     public class ActiveErrorsGetter : IActiveErrorsGetter

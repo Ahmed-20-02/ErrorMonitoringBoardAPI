@@ -2,18 +2,18 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Updaters
 {
     using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
-    using DevelopmentProjectErrorBoardAPI.Resources;
+    using DevelopmentProjectErrorBoardAPI.Resources.Models;
     using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
 
     public class ErrorStatusUpdater : IErrorStatusUpdater
     {
-        private readonly IUpdateErrorStatus _updateErrorStatus;
+        private readonly IUpdateErrorStatusCommand _updateErrorStatusCommand;
         private readonly IErrorModelMapper _errorModelMapper;
 
-        public ErrorStatusUpdater(IUpdateErrorStatus updateErrorStatus, 
+        public ErrorStatusUpdater(IUpdateErrorStatusCommand updateErrorStatusCommand, 
             IErrorModelMapper errorModelMapper)
         {
-            _updateErrorStatus = updateErrorStatus;
+            _updateErrorStatusCommand = updateErrorStatusCommand;
             _errorModelMapper = errorModelMapper;
         }
 
@@ -21,7 +21,7 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Updaters
         {
             try
             {
-                var error = await this._updateErrorStatus.Update(errorId, statusId);
+                var error = await this._updateErrorStatusCommand.Update(errorId, statusId);
                 var mappedError = _errorModelMapper.Map(error);
             
                 return mappedError;

@@ -2,7 +2,7 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors
 {
     using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Enums;
-    using DevelopmentProjectErrorBoardAPI.Resources;
+    using DevelopmentProjectErrorBoardAPI.Resources.Requests;
     using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces;
 
@@ -18,34 +18,34 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors
             _userModelMapper = userModelMapper;
         }
 
-        public async Task<DevCheckLogInModel> Process(LogInModel logInModel)
+        public async Task<DevCheckLogInRequest> Process(LogInRequest logInRequest)
         {
             try
             {
-                var user = await _userByEmailAndPasswordGetter.Get(logInModel.EmailAddress, logInModel.Password);
+                var user = await _userByEmailAndPasswordGetter.Get(logInRequest.EmailAddress, logInRequest.Password);
 
-                DevCheckLogInModel model = new DevCheckLogInModel();
+                DevCheckLogInRequest request = new DevCheckLogInRequest();
 
                 if (user == null)
                 {
-                    model.Message = "No user found with that email and password";
-                    model.IsAuthenticated = false;
+                    request.Message = "No user found with that email and password";
+                    request.IsAuthenticated = false;
                 }
 
                 else if (user.FirstName != string.Empty && user.RoleId != (int)RolesEnum.Developer)
                 {
-                    model.Message = $"You should not be here {user.FirstName}, fired.";
-                    model.IsAuthenticated = false;
+                    request.Message = $"Only developers past this point {user.FirstName}";
+                    request.IsAuthenticated = false;
                 }
 
                 else if (user.FirstName != string.Empty && user.RoleId == (int)RolesEnum.Developer)
                 {
-                    model.User = _userModelMapper.Map(user);
-                    model.Message = "Log In Successful";
-                    model.IsAuthenticated = true;
+                    request.User = _userModelMapper.Map(user);
+                    request.Message = "Log In Successful";
+                    request.IsAuthenticated = true;
                 }
 
-                return model;
+                return request;
             }
             catch (Exception e)
             {

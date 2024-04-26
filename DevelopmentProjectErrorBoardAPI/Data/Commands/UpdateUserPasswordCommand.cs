@@ -2,16 +2,15 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
 {
     using Microsoft.EntityFrameworkCore;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
-    using DevelopmentProjectErrorBoardAPI.Services;
     using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Services.Interfaces;
 
-    public class UpdateUserPassword : IUpdateUserPassword
+    public class UpdateUserPasswordCommand : IUpdateUserPasswordCommand
     {
         private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly IPasswordService _passwordService;
 
-        public UpdateUserPassword(IDbContextFactory<DataContext> contextFactory, 
+        public UpdateUserPasswordCommand(IDbContextFactory<DataContext> contextFactory, 
             IPasswordService passwordService)
         {
             _contextFactory = contextFactory;
@@ -24,13 +23,10 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
             {
                 using (var context = _contextFactory.CreateDbContext())
                 {
-                    // Find the specific record based on ID
                     var user = await context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
                     
-                    // Check if the record exists
                     if (user != null)
                     {
-                        // Update the record
                         user.Password = _passwordService.HashPassword(password);
                         
                         context.SaveChanges();

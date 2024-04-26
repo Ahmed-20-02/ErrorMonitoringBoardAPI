@@ -3,7 +3,7 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Getters
     using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
-    using DevelopmentProjectErrorBoardAPI.Resources;
+    using DevelopmentProjectErrorBoardAPI.Resources.Models;
 
     public class ProjectsGetter : IProjectsGetter
     {

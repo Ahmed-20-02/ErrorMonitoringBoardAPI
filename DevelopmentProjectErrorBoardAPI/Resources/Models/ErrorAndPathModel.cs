@@ -1,4 +1,4 @@
-namespace DevelopmentProjectErrorBoardAPI.Resources
+namespace DevelopmentProjectErrorBoardAPI.Resources.Models
 {
     public class ErrorAndPathModel
     {

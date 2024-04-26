@@ -1,9 +1,9 @@
 namespace DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces
 {
-    using DevelopmentProjectErrorBoardAPI.Resources;
+    using DevelopmentProjectErrorBoardAPI.Resources.Requests;
 
     public interface IDevLogInCheckProcessor
     {
-        Task<DevCheckLogInModel> Process(LogInModel logInModel);
+        Task<DevCheckLogInRequest> Process(LogInRequest logInRequest);
     }
 }

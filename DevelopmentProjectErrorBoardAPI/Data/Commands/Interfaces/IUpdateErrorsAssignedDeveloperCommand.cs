@@ -2,8 +2,8 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces
 {
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
 
-    public interface IDeactivateError
+    public interface IUpdateErrorsAssignedDeveloperCommand
     {
-        Task<Error> Deactivate(int errorId);
+        Task<Error> Update(int errorId, int devId);
     }
 }

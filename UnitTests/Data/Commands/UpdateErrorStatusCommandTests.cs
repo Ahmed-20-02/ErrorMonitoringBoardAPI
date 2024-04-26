@@ -6,38 +6,39 @@ namespace UnitTests.Data.Commands
     using DevelopmentProjectErrorBoardAPI.Data.Commands;
     using Moq;
 
-    public class DeactivateErrorTests : TestBase<DeactivateError>
+    public class UpdateErrorStatusCommandTests : TestBase<UpdateErrorStatusCommand>
     {
         [Fact]
-        public async Task DeactivateReturnsDeactivatesError()
+        public async Task UpdateAssignsNewStatus()
         {
             var stubErrorId = 10;
-            
+            var stubNewStatusId = 4;
+
             var context = new TestDbContextFactory().CreateDbContext();
-            
+
             Assert.NotEmpty(context.Errors);
-            
+
             this.AutoMocker.GetMock<ILogger>()
                 .Setup(x => x.Log(It.IsAny<string>()));
-            
+
             this.AutoMocker.GetMock<IDbContextFactory<DataContext>>()
                 .Setup(x => x.CreateDbContext())
                 .Returns(context);
-            
-            Assert.True(context.Errors.FirstOrDefaultAsync(X => X.ErrorId == stubErrorId).Result.IsActive);
+
+            Assert.NotEqual(context.Errors.FirstOrDefaultAsync(X => X.ErrorId == stubErrorId).Result.StatusId,
+                stubNewStatusId);
 
             var sut = this.CreateTestSubject();
 
-            var result = await sut.Deactivate(stubErrorId);
-            
+            var result = await sut.Update(stubErrorId, stubNewStatusId);
+
             Assert.NotNull(result);
-            
-            Assert.False(result.IsActive);
-            Assert.Equal(stubErrorId, result.ErrorId);
+
+            Assert.Equal(stubNewStatusId, result.StatusId);
         }
-        
+
         [Fact]
-        public async Task DeactivateHitsException()
+        public async Task UpdateHitsException()
         {
             this.AutoMocker.GetMock<ILogger>()
                 .Setup(x => x.Log(It.IsAny<string>()))
@@ -45,8 +46,8 @@ namespace UnitTests.Data.Commands
 
             var sut = this.CreateTestSubject();
 
-            var ex = await Assert.ThrowsAsync<Exception>(() => sut.Deactivate(It.IsAny<int>()));
-    
+            var ex = await Assert.ThrowsAsync<Exception>(() => sut.Update(It.IsAny<int>(), It.IsAny<int>()));
+
             Assert.IsType<Exception>(ex);
             Assert.Equal("ExceptionMessage", ex.Message);
         }

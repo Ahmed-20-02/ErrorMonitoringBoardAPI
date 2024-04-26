@@ -6,7 +6,7 @@ namespace UnitTests.Business.Getters
     using DevelopmentProjectErrorBoardAPI.Logger;
     using Moq;
     using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
-    using DevelopmentProjectErrorBoardAPI.Resources;
+    using DevelopmentProjectErrorBoardAPI.Resources.Models;
 
     public class ProjectsGetterTests : TestBase<ProjectsGetter>
     {

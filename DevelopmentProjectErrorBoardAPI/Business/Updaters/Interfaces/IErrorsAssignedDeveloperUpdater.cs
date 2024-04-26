@@ -1,9 +1,10 @@
 namespace DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces
 {
-    using DevelopmentProjectErrorBoardAPI.Resources;
-
+    using DevelopmentProjectErrorBoardAPI.Resources.Models;
+    using DevelopmentProjectErrorBoardAPI.Resources.Requests;
+    
     public interface IErrorsAssignedDeveloperUpdater
     {
-        Task<ErrorModel> Update(UpdateErrorsAssignedDeveloperModel model);
+        Task<ErrorModel> Update(UpdateErrorsAssignedDeveloperRequest request);
     }
 }

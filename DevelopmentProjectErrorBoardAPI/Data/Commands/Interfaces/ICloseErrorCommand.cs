@@ -2,8 +2,8 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces
 {
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
 
-    public interface IUpdateUserPassword
+    public interface ICloseErrorCommand
     {
-        Task<User> Update(int userId, string password);
+        Task<Error> Close(int errorId);
     }
 }

@@ -2,7 +2,7 @@ namespace UnitTests.Business.Getters
 {
     using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Data.Queries.Interfaces;
-    using DevelopmentProjectErrorBoardAPI.Resources;
+    using DevelopmentProjectErrorBoardAPI.Resources.Models;
     using DevelopmentProjectErrorBoardAPI.Business.Getters;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
     using DevelopmentProjectErrorBoardAPI.Logger;

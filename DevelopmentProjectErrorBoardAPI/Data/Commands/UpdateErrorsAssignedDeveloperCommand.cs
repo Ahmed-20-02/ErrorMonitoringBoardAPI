@@ -5,36 +5,33 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
     using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
 
-    public class DeactivateError : IDeactivateError
+    public class UpdateErrorsAssignedDeveloperCommand : IUpdateErrorsAssignedDeveloperCommand
     {
         private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly ILogger _logger;
 
-        public DeactivateError(IDbContextFactory<DataContext> contextFactory,
+        public UpdateErrorsAssignedDeveloperCommand(IDbContextFactory<DataContext> contextFactory,
             ILogger logger)
         {
             _contextFactory = contextFactory;
             _logger = logger;
         }
 
-        public async Task<Error> Deactivate(int errorId)
+        public async Task<Error> Update(int errorId, int devId)
         {
-            _logger.Log($"Deactivating errorId {errorId}");
+            _logger.Log($"Updating errorId {errorId} dev to {devId} ");
 
             try
             {
                 using (var context = _contextFactory.CreateDbContext())
                 {
-                    // Find the specific error
                     var error = await context.Errors.FirstOrDefaultAsync(e => e.ErrorId == errorId);
                     
-                    // Check if the error exists
                     if (error != null)
                     {
-                        // Update the error
-                        error.IsActive = false;
+                        error.DeveloperId = devId == 1 ? null : devId;
                         error.UpdatedDate = DateTime.Now;
-                        
+                
                         context.SaveChanges();
                     }
 

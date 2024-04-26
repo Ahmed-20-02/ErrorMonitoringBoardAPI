@@ -1,6 +1,6 @@
-namespace DevelopmentProjectErrorBoardAPI.Resources{
-
-    public class LogInModel
+namespace DevelopmentProjectErrorBoardAPI.Resources.Requests
+{
+    public class LogInRequest
     {
         public string EmailAddress { get; set; }
 

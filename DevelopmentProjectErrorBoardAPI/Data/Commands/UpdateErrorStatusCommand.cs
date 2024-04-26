@@ -6,12 +6,12 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
     using DevelopmentProjectErrorBoardAPI.Enums;
     using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
 
-    public class UpdateErrorStatus : IUpdateErrorStatus
+    public class UpdateErrorStatusCommand : IUpdateErrorStatusCommand
     {
         private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly ILogger _logger;
 
-        public UpdateErrorStatus(IDbContextFactory<DataContext> contextFactory,
+        public UpdateErrorStatusCommand(IDbContextFactory<DataContext> contextFactory,
             ILogger logger)
         {
             _contextFactory = contextFactory;
@@ -26,13 +26,10 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
             {
                 using (var context = _contextFactory.CreateDbContext())
                 {
-                    // Find the specific error
                     var error = await context.Errors.FirstOrDefaultAsync(e => e.ErrorId == errorId);
                     
-                    // Check if the error exists
                     if (error != null)
                     {
-                        // Update the error
                         error.StatusId = statusId;
                         error.UpdatedDate = DateTime.Now;
                         

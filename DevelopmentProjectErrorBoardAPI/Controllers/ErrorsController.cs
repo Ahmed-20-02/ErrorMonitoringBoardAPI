@@ -4,6 +4,7 @@ using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Data;
 using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Resources;
+using DevelopmentProjectErrorBoardAPI.Resources.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
@@ -20,7 +21,7 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         private readonly IUserPasswordUpdater _userPasswordUpdater;
         private readonly IErrorsAssignedDeveloperUpdater _errorsAssignedDeveloperUpdater;
         private readonly IUpdateErrorStatusProcessor _updateErrorStatusProcessor;
-        private readonly IDeactivateError _deactivateError;
+        private readonly IErrorCloser _errorCloser;
         private readonly IDevLogInCheckProcessor _devLogInCheckProcessor;
         private readonly ILogger _logger;
         
@@ -32,8 +33,8 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             IUserPasswordUpdater userPasswordUpdater, 
             IDevelopersGetter developersGetter,
             IErrorsAssignedDeveloperUpdater errorsAssignedDeveloperUpdater, 
-            IDeactivateError deactivateError, 
-            IProjectsGetter projectsGetter)
+            IProjectsGetter projectsGetter, 
+            IErrorCloser errorCloser)
         {
             _logger = logger;
             _activeErrorsGetter = activeErrorsGetter;
@@ -42,8 +43,8 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             _userPasswordUpdater = userPasswordUpdater;
             _developersGetter = developersGetter;
             _errorsAssignedDeveloperUpdater = errorsAssignedDeveloperUpdater;
-            _deactivateError = deactivateError;
             _projectsGetter = projectsGetter;
+            _errorCloser = errorCloser;
         }
 
         [HttpGet("GetErrors")]
@@ -95,17 +96,17 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         }
         
         [HttpPut("UpdateErrorStatus")]
-        public async Task<IActionResult> UpdateErrorStatus([FromBody] UpdateErrorStatusModel model)
+        public async Task<IActionResult> UpdateErrorStatus([FromBody] UpdateErrorStatusRequest request)
         {
-            _logger.Log($"GetAllErrors Called for ErrorId{model.ErrorId} updating to status {model.StatusId} ");
+            _logger.Log($"GetAllErrors Called for ErrorId{request.ErrorId} updating to status {request.StatusId} ");
             try
             {
-                var error = await _updateErrorStatusProcessor.Process(model);
+                var error = await _updateErrorStatusProcessor.Process(request);
                 return new OkObjectResult(error);
             }
             catch (Exception e)
             {
-                _logger.Log($"GetAllErrors Failed for ErrorId{model.ErrorId} updating to status {model.StatusId} ");
+                _logger.Log($"GetAllErrors Failed for ErrorId{request.ErrorId} updating to status {request.StatusId} ");
 
                 Console.WriteLine(e);
                 throw;
@@ -113,17 +114,17 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         }
         
         [HttpPut("DeactivateError")]
-        public async Task<IActionResult> DeactivateError([FromBody] DeactivateErrorModel model)
+        public async Task<IActionResult> DeactivateError([FromBody] DeactivateErrorRequest request)
         {
-            _logger.Log($"DeactivateError Called for ErrorId{model.ErrorId}");
+            _logger.Log($"DeactivateError Called for ErrorId{request.ErrorId}");
             try
             {
-                var error = _deactivateError.Deactivate(model.ErrorId);
+                var error = _errorCloser.Close(request.ErrorId);
                 return new OkObjectResult(error);
             }
             catch (Exception e)
             {
-                _logger.Log($"DeactivateError Failed for ErrorId{model.ErrorId}");
+                _logger.Log($"DeactivateError Failed for ErrorId{request.ErrorId}");
 
                 Console.WriteLine(e);
                 throw;
@@ -131,17 +132,17 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         }
         
         [HttpPut("UpdateErrorsAssignedDeveloper")]
-        public async Task<IActionResult> UpdateErrorsAssignedDeveloper([FromBody] UpdateErrorsAssignedDeveloperModel model)
+        public async Task<IActionResult> UpdateErrorsAssignedDeveloper([FromBody] UpdateErrorsAssignedDeveloperRequest request)
         {
-            _logger.Log($"UpdateErrorsAssignedDeveloper Called for ErrorId{model.ErrorId} updating to dev {model.DevId} ");
+            _logger.Log($"UpdateErrorsAssignedDeveloper Called for ErrorId{request.ErrorId} updating to dev {request.DevId} ");
             try
             {
-                var error = _errorsAssignedDeveloperUpdater.Update(model);
+                var error = _errorsAssignedDeveloperUpdater.Update(request);
                 return new OkObjectResult(error);
             }
             catch (Exception e)
             {
-                _logger.Log($"UpdateErrorsAssignedDeveloper Failed for ErrorId{model.ErrorId} updating to dev {model.DevId} ");
+                _logger.Log($"UpdateErrorsAssignedDeveloper Failed for ErrorId{request.ErrorId} updating to dev {request.DevId} ");
 
                 Console.WriteLine(e);
                 throw;
@@ -149,17 +150,35 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         }
         
         [HttpPost("DevLogIn")]
-        public async Task<IActionResult> DevLogIn([FromBody] LogInModel model)
+        public async Task<IActionResult> DevLogIn([FromBody] LogInRequest request)
         {
-            _logger.Log($"LogIn Called for user email {model.EmailAddress}");
+            _logger.Log($"LogIn Called for user email {request.EmailAddress}");
             try
             {
-                var logInModel = await _devLogInCheckProcessor.Process(model);
+                var logInModel = await _devLogInCheckProcessor.Process(request);
                 return new OkObjectResult(logInModel);
             }
             catch (Exception e)
             {
-                _logger.Log($"LogIn Failed for user email {model.EmailAddress}");
+                _logger.Log($"LogIn Failed for user email {request.EmailAddress}");
+
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        
+        [HttpPost("CreateError")]
+        public async Task<IActionResult> CreateError([FromBody] CreateErrorRequest model)
+        {
+            _logger.Log($"CreateError Called");
+            try
+            {
+                //var logInModel = await _devLogInCheckProcessor.Process(model);
+                return new OkObjectResult(6/*logInModel*/);
+            }
+            catch (Exception e)
+            {
+                _logger.Log($"CreateError Failed");
 
                 Console.WriteLine(e);
                 throw;

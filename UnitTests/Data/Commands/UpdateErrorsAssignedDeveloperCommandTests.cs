@@ -6,7 +6,7 @@ namespace UnitTests.Data.Commands
     using DevelopmentProjectErrorBoardAPI.Data.Commands;
     using Moq;
 
-    public class UpdateErrorsAssignedDeveloperTests : TestBase<UpdateErrorsAssignedDeveloper>
+    public class UpdateErrorsAssignedDeveloperCommandTests : TestBase<UpdateErrorsAssignedDeveloperCommand>
     {
         [Fact]
         public async Task UpdateAssignsNewDeveloper()

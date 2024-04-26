@@ -6,18 +6,18 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Updaters
 
     public class UserPasswordUpdater : IUserPasswordUpdater
     {
-        private readonly IUpdateUserPassword _updateUserPassword;
+        private readonly IUpdateUserPasswordCommand _updateUserPasswordCommand;
 
-        public UserPasswordUpdater(IUpdateUserPassword updateUserPassword)
+        public UserPasswordUpdater(IUpdateUserPasswordCommand updateUserPasswordCommand)
         {
-            _updateUserPassword = updateUserPassword;
+            _updateUserPasswordCommand = updateUserPasswordCommand;
         }
 
         public async Task<User> Update(int userId, string password)
         {
             try
             {
-                var user = await this._updateUserPassword.Update(userId, password);
+                var user = await this._updateUserPasswordCommand.Update(userId, password);
             
                 return user;
             }

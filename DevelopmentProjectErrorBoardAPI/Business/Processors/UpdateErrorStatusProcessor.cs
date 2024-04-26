@@ -2,7 +2,8 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors
 {
     using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
-    using DevelopmentProjectErrorBoardAPI.Resources;
+    using DevelopmentProjectErrorBoardAPI.Resources.Models;
+    using DevelopmentProjectErrorBoardAPI.Resources.Requests;
     using DevelopmentProjectErrorBoardAPI.Services;
     using DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Enums;
@@ -22,18 +23,18 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors
             _userByIdGetter = userByIdGetter;
         }
 
-        public async Task<ErrorModel> Process(UpdateErrorStatusModel model)
+        public async Task<ErrorModel> Process(UpdateErrorStatusRequest request)
         {
             try
             {
-                var error = await _errorStatusUpdater.Update(model.ErrorId, model.StatusId);
+                var error = await _errorStatusUpdater.Update(request.ErrorId, request.StatusId);
 
-                if (model.CustomerId != null && model.AgentId != (int)RolesEnum.System)
+                if (request.CustomerId != null && request.AgentId != (int)RolesEnum.System)
                 {
-                    var agent = await _userByIdGetter.Get(model.AgentId);
-                    var dev = await _userByIdGetter.Get(model.DevId);
+                    var agent = await _userByIdGetter.Get(request.AgentId);
+                    var dev = await _userByIdGetter.Get(request.DevId);
 
-                    _emailService.SendEmail(agent, dev, model.CustomerId, model.StatusId);
+                    _emailService.SendEmail(agent, dev, request.CustomerId, request.StatusId);
                 }
 
                 return error;

@@ -2,8 +2,8 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces
 {
     using DevelopmentProjectErrorBoardAPI.Resources.Models;
 
-    public interface IErrorStatusUpdater
+    public interface IErrorCloser
     {
-        Task<ErrorModel> Update(int errorId, int statusId);
+        Task<ErrorModel> Close(int errorId);
     }
 }

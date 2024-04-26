@@ -1,9 +1,8 @@
 namespace DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces
 {
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
-
-    public interface IUpdateErrorsAssignedDeveloper
+    public interface IUpdateErrorStatusCommand
     {
-        Task<Error> Update(int errorId, int devId);
+        Task<Error> Update(int errorId, int statusId);
     }
 }

@@ -1,6 +1,6 @@
 namespace DevelopmentProjectErrorBoardAPI.Business.Mappers
 {
-    using DevelopmentProjectErrorBoardAPI.Resources;
+    using DevelopmentProjectErrorBoardAPI.Resources.Models;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
     using DevelopmentProjectErrorBoardAPI.Business.Mappers.Interfaces;
 
