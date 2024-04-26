@@ -1,10 +1,11 @@
+
 namespace DevelopmentProjectErrorBoardAPI.Business.Processors
 {
     using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Resources.Models;
     using DevelopmentProjectErrorBoardAPI.Resources.Requests;
-    using DevelopmentProjectErrorBoardAPI.Services;
+    using DevelopmentProjectErrorBoardAPI.Services.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Enums;
 
@@ -29,12 +30,12 @@ namespace DevelopmentProjectErrorBoardAPI.Business.Processors
             {
                 var error = await _errorStatusUpdater.Update(request.ErrorId, request.StatusId);
 
-                if (request.CustomerId != null && request.AgentId != (int)RolesEnum.System)
+                if (request.AgentId != (int)RolesEnum.System)
                 {
                     var agent = await _userByIdGetter.Get(request.AgentId);
                     var dev = await _userByIdGetter.Get(request.DevId);
 
-                    _emailService.SendEmail(agent, dev, request.CustomerId, request.StatusId);
+                    _emailService.SendEmail(agent, dev, request.CustomerId, request.StatusId, request.ErrorId);
                 }
 
                 return error;

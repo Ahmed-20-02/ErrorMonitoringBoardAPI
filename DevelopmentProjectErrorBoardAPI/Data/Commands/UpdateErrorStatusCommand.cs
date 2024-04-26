@@ -33,7 +33,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
                         error.StatusId = statusId;
                         error.UpdatedDate = DateTime.Now;
                         
-                        context.SaveChanges();
+                        await context.SaveChangesAsync();
                     }
 
                     return error;

@@ -29,7 +29,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
                     {
                         user.Password = _passwordService.HashPassword(password);
                         
-                        context.SaveChanges();
+                        await context.SaveChangesAsync();
                     }
 
                     return user;

@@ -4,38 +4,45 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
     using DevelopmentProjectErrorBoardAPI.Data.Entities;
     using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
+    using DevelopmentProjectErrorBoardAPI.Resources.Models;
 
-    public class CloseErrorCommand : ICloseErrorCommand
+    public class CreateLogPathCommand : ICreateLogPathCommand
     {
         private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly ILogger _logger;
 
-        public CloseErrorCommand(IDbContextFactory<DataContext> contextFactory,
+        public CreateLogPathCommand(IDbContextFactory<DataContext> contextFactory,
             ILogger logger)
         {
             _contextFactory = contextFactory;
             _logger = logger;
         }
 
-        public async Task<Error> Close(int errorId)
+        public async Task<ErrorLogPath> Create(CreateLogPathModel request, int errorId)
         {
-            _logger.Log($"Deactivating errorId {errorId}");
+            _logger.Log($"Creating log path for error {errorId}");
 
             try
             {
                 using (var context = _contextFactory.CreateDbContext())
                 {
-                    var error = await context.Errors.FirstOrDefaultAsync(e => e.ErrorId == errorId);
-                    
-                    if (error != null)
+                    if (!string.IsNullOrEmpty(request.FileName))
                     {
-                        error.IsActive = false;
-                        error.UpdatedDate = DateTime.Now;
+                        var logPath = new ErrorLogPath();
+
+                        logPath.FileName = request.FileName;
+                        logPath.CreatedDate = DateTime.Now;
+                        logPath.ErrorId = errorId;
+                        
+                        context.ErrorLogPaths.Add(logPath);
                         
                         await context.SaveChangesAsync();
+                        
+                        return logPath;
                     }
 
-                    return error;
+                    return null;
+
                 }
             }
             catch (Exception e)

@@ -32,7 +32,7 @@ namespace DevelopmentProjectErrorBoardAPI.Data.Commands
                         error.DeveloperId = devId == 1 ? null : devId;
                         error.UpdatedDate = DateTime.Now;
                 
-                        context.SaveChanges();
+                        await context.SaveChangesAsync();
                     }
 
                     return error;

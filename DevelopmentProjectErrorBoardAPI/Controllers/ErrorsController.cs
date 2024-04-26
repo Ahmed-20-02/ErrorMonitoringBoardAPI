@@ -4,6 +4,7 @@ using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Data;
 using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
 using DevelopmentProjectErrorBoardAPI.Resources;
+using DevelopmentProjectErrorBoardAPI.Resources.Models;
 using DevelopmentProjectErrorBoardAPI.Resources.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,9 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         private readonly IUpdateErrorStatusProcessor _updateErrorStatusProcessor;
         private readonly IErrorCloser _errorCloser;
         private readonly IDevLogInCheckProcessor _devLogInCheckProcessor;
+        private readonly ICreateErrorCommand _createErrorCommand;
+        private readonly ICreateLogPathCommand _createLogPathCommand;
+        private readonly ICreateErrorProcessor _createErrorProcessor;
         private readonly ILogger _logger;
         
         public ErrorsController(
@@ -34,7 +38,10 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             IDevelopersGetter developersGetter,
             IErrorsAssignedDeveloperUpdater errorsAssignedDeveloperUpdater, 
             IProjectsGetter projectsGetter, 
-            IErrorCloser errorCloser)
+            IErrorCloser errorCloser, 
+            ICreateErrorCommand createErrorCommand, 
+            ICreateLogPathCommand createLogPathCommand, 
+            ICreateErrorProcessor createErrorProcessor)
         {
             _logger = logger;
             _activeErrorsGetter = activeErrorsGetter;
@@ -45,6 +52,9 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             _errorsAssignedDeveloperUpdater = errorsAssignedDeveloperUpdater;
             _projectsGetter = projectsGetter;
             _errorCloser = errorCloser;
+            _createErrorCommand = createErrorCommand;
+            _createLogPathCommand = createLogPathCommand;
+            _createErrorProcessor = createErrorProcessor;
         }
 
         [HttpGet("GetErrors")]
@@ -168,13 +178,15 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         }
         
         [HttpPost("CreateError")]
-        public async Task<IActionResult> CreateError([FromBody] CreateErrorRequest model)
+        public async Task<IActionResult> CreateError([FromBody] /*CreateErrorRequest*/ /*CreateErrorModel*/ /*CreateLogPathModel*/CreateErrorRequest model)
         {
             _logger.Log($"CreateError Called");
             try
             {
-                //var logInModel = await _devLogInCheckProcessor.Process(model);
-                return new OkObjectResult(6/*logInModel*/);
+              //  var result = await _createErrorCommand.Create(model);
+              //var result = await _createLogPathCommand.Create(model, 10);
+              var result = await _createErrorProcessor.Process(model);
+                return new OkObjectResult(result);
             }
             catch (Exception e)
             {
