@@ -3255,3 +3255,541 @@
 26/04/2024 19:11:40 | Getting users by role id 2
 26/04/2024 19:11:40 | GetProjects Called
 26/04/2024 19:11:40 | Getting Projects
+26/04/2024 19:35:57 | CreateError Called
+26/04/2024 19:35:57 | Creating error for exception message CREATE MESSAGE TEST
+26/04/2024 19:38:03 | CreateError Failed
+26/04/2024 19:44:14 | CreateError Called
+26/04/2024 19:44:14 | Creating error for exception message CREATE MESSAGE TEST
+26/04/2024 19:44:31 | Getting user by user id 3
+26/04/2024 19:44:46 | Getting user by user id 0
+26/04/2024 19:46:33 | CreateError Failed
+26/04/2024 19:54:52 | CreateError Called
+26/04/2024 19:54:52 | Creating error for exception message CREATE MESSAGE TEST
+26/04/2024 19:56:11 | CreateError Called
+26/04/2024 19:56:11 | Creating error for exception message CREATE MESSAGE TEST
+26/04/2024 19:58:02 | LogIn Called for user email AhmedDev@gmail.com
+26/04/2024 19:58:02 | Getting user by email AhmedDev@gmail.com
+26/04/2024 19:58:05 | GetAllErrors Called
+26/04/2024 19:58:05 | Getting Errors
+26/04/2024 19:58:05 | Getting Log path for Error 1
+26/04/2024 19:58:05 | Getting Log path for Error 2
+26/04/2024 19:58:05 | Getting Log path for Error 3
+26/04/2024 19:58:06 | Getting Log path for Error 4
+26/04/2024 19:58:06 | Getting Log path for Error 9
+26/04/2024 19:58:06 | GetDevelopers Called
+26/04/2024 19:58:06 | Getting users by role id 2
+26/04/2024 19:58:06 | GetProjects Called
+26/04/2024 19:58:06 | Getting Projects
+26/04/2024 19:58:17 | UpdateErrorsAssignedDeveloper Called for ErrorId9 updating to dev 2 
+26/04/2024 19:58:17 | Updating errorId 9 dev to 2 
+26/04/2024 19:58:22 | GetAllErrors Called
+26/04/2024 19:58:22 | Getting Errors
+26/04/2024 19:58:22 | Getting Log path for Error 1
+26/04/2024 19:58:22 | Getting Log path for Error 2
+26/04/2024 19:58:22 | Getting Log path for Error 3
+26/04/2024 19:58:22 | Getting Log path for Error 4
+26/04/2024 19:58:22 | Getting Log path for Error 9
+26/04/2024 19:58:25 | UpdateErrorsAssignedDeveloper Called for ErrorId9 updating to dev 1 
+26/04/2024 19:58:25 | Updating errorId 9 dev to 1 
+26/04/2024 19:58:25 | GetAllErrors Called
+26/04/2024 19:58:25 | Getting Errors
+26/04/2024 19:58:25 | Getting Log path for Error 1
+26/04/2024 19:58:25 | Getting Log path for Error 2
+26/04/2024 19:58:25 | Getting Log path for Error 3
+26/04/2024 19:58:26 | Getting Log path for Error 4
+26/04/2024 19:58:26 | Getting Log path for Error 9
+26/04/2024 19:58:27 | UpdateErrorsAssignedDeveloper Called for ErrorId9 updating to dev 2 
+26/04/2024 19:58:27 | Updating errorId 9 dev to 2 
+26/04/2024 19:58:27 | GetAllErrors Called
+26/04/2024 19:58:27 | Getting Errors
+26/04/2024 19:58:27 | Getting Log path for Error 1
+26/04/2024 19:58:27 | Getting Log path for Error 2
+26/04/2024 19:58:27 | Getting Log path for Error 3
+26/04/2024 19:58:27 | Getting Log path for Error 4
+26/04/2024 19:58:27 | Getting Log path for Error 9
+26/04/2024 19:58:36 | UpdateErrorsAssignedDeveloper Called for ErrorId9 updating to dev 1 
+26/04/2024 19:58:36 | Updating errorId 9 dev to 1 
+26/04/2024 19:58:36 | GetAllErrors Called
+26/04/2024 19:58:36 | Getting Errors
+26/04/2024 19:58:36 | Getting Log path for Error 1
+26/04/2024 19:58:36 | Getting Log path for Error 2
+26/04/2024 19:58:36 | Getting Log path for Error 3
+26/04/2024 19:58:36 | Getting Log path for Error 4
+26/04/2024 19:58:36 | Getting Log path for Error 9
+26/04/2024 20:01:32 | CreateError Called
+26/04/2024 20:01:32 | Creating error for exception message CREATE MESSAGE TEST
+26/04/2024 20:03:06 | LogIn Called for user email AhmedDev@gmail.com
+26/04/2024 20:03:06 | Getting user by email AhmedDev@gmail.com
+26/04/2024 20:03:09 | GetAllErrors Called
+26/04/2024 20:03:09 | Getting Errors
+26/04/2024 20:03:09 | Getting Log path for Error 1
+26/04/2024 20:03:09 | Getting Log path for Error 2
+26/04/2024 20:03:09 | Getting Log path for Error 3
+26/04/2024 20:03:09 | Getting Log path for Error 4
+26/04/2024 20:03:09 | Getting Log path for Error 9
+26/04/2024 20:03:09 | Getting Log path for Error 10
+26/04/2024 20:03:10 | GetDevelopers Called
+26/04/2024 20:03:10 | Getting users by role id 2
+26/04/2024 20:03:10 | GetProjects Called
+26/04/2024 20:03:10 | Getting Projects
+26/04/2024 20:03:14 | UpdateErrorsAssignedDeveloper Called for ErrorId10 updating to dev 1 
+26/04/2024 20:03:14 | Updating errorId 10 dev to 1 
+26/04/2024 20:03:14 | GetAllErrors Called
+26/04/2024 20:03:14 | Getting Errors
+26/04/2024 20:03:14 | Getting Log path for Error 1
+26/04/2024 20:03:14 | Getting Log path for Error 2
+26/04/2024 20:03:14 | Getting Log path for Error 3
+26/04/2024 20:03:14 | Getting Log path for Error 4
+26/04/2024 20:03:14 | Getting Log path for Error 9
+26/04/2024 20:03:14 | Getting Log path for Error 10
+26/04/2024 20:03:16 | UpdateErrorsAssignedDeveloper Called for ErrorId10 updating to dev 5 
+26/04/2024 20:03:16 | Updating errorId 10 dev to 5 
+26/04/2024 20:03:16 | GetAllErrors Called
+26/04/2024 20:03:16 | Getting Errors
+26/04/2024 20:03:16 | Getting Log path for Error 1
+26/04/2024 20:03:16 | Getting Log path for Error 2
+26/04/2024 20:03:16 | Getting Log path for Error 3
+26/04/2024 20:03:16 | Getting Log path for Error 4
+26/04/2024 20:03:16 | Getting Log path for Error 9
+26/04/2024 20:03:16 | Getting Log path for Error 10
+26/04/2024 20:03:26 | GetAllErrors Called for ErrorId10 updating to status 2 
+26/04/2024 20:03:26 | Updating errorId 10 status to AwaitingInformation 
+26/04/2024 20:03:26 | GetAllErrors Called
+26/04/2024 20:03:26 | Getting Errors
+26/04/2024 20:03:26 | Getting Log path for Error 1
+26/04/2024 20:03:26 | Getting Log path for Error 2
+26/04/2024 20:03:26 | Getting Log path for Error 3
+26/04/2024 20:03:26 | Getting Log path for Error 4
+26/04/2024 20:03:26 | Getting Log path for Error 9
+26/04/2024 20:03:26 | Getting Log path for Error 10
+26/04/2024 20:04:11 | GetAllErrors Called for ErrorId10 updating to status 3 
+26/04/2024 20:04:11 | Updating errorId 10 status to Escalated 
+26/04/2024 20:04:11 | GetAllErrors Called
+26/04/2024 20:04:11 | Getting Errors
+26/04/2024 20:04:11 | Getting Log path for Error 1
+26/04/2024 20:04:11 | Getting Log path for Error 2
+26/04/2024 20:04:11 | Getting Log path for Error 3
+26/04/2024 20:04:11 | Getting Log path for Error 4
+26/04/2024 20:04:11 | Getting Log path for Error 9
+26/04/2024 20:04:11 | Getting Log path for Error 10
+26/04/2024 20:05:34 | CreateError Called
+26/04/2024 20:05:34 | Creating error for exception message CREATE MESSAGE TEST
+26/04/2024 20:05:41 | GetAllErrors Called
+26/04/2024 20:05:41 | Getting Errors
+26/04/2024 20:05:42 | Getting Log path for Error 1
+26/04/2024 20:05:42 | Getting Log path for Error 2
+26/04/2024 20:05:42 | Getting Log path for Error 3
+26/04/2024 20:05:42 | Getting Log path for Error 4
+26/04/2024 20:05:42 | Getting Log path for Error 9
+26/04/2024 20:05:42 | Getting Log path for Error 10
+26/04/2024 20:05:42 | Getting Log path for Error 11
+26/04/2024 20:05:42 | GetDevelopers Called
+26/04/2024 20:05:42 | Getting users by role id 2
+26/04/2024 20:05:42 | GetProjects Called
+26/04/2024 20:05:42 | Getting Projects
+26/04/2024 20:05:56 | GetAllErrors Called for ErrorId11 updating to status 2 
+26/04/2024 20:05:56 | Updating errorId 11 status to AwaitingInformation 
+26/04/2024 20:05:56 | Getting user by user id 3
+26/04/2024 20:05:56 | Getting user by user id 2
+26/04/2024 20:05:57 | GetAllErrors Called
+26/04/2024 20:05:57 | Getting Errors
+26/04/2024 20:05:57 | Getting Log path for Error 1
+26/04/2024 20:05:57 | Getting Log path for Error 2
+26/04/2024 20:05:57 | Getting Log path for Error 3
+26/04/2024 20:05:57 | Getting Log path for Error 4
+26/04/2024 20:05:58 | Getting Log path for Error 9
+26/04/2024 20:05:58 | Getting Log path for Error 10
+26/04/2024 20:05:58 | Getting Log path for Error 11
+26/04/2024 20:21:40 | CreateError Called
+26/04/2024 20:21:40 | Creating log path for error 10
+26/04/2024 20:41:59 | CreateError Called
+26/04/2024 20:42:10 | Creating error for exception message CREATE MESSAGE WITH LOGA
+26/04/2024 20:42:32 | Creating log path for error 12
+26/04/2024 20:46:44 | CreateError Called
+26/04/2024 20:46:50 | Creating error for exception message CREATE MESSAGE WITH LOGS V2
+26/04/2024 20:47:03 | Creating log path for error 13
+26/04/2024 20:47:08 | Creating log path for error 13
+26/04/2024 20:53:15 | CreateError Called
+26/04/2024 20:53:15 | Creating error for exception message CREATE MESSAGE WITH LOGS V3
+26/04/2024 20:53:19 | Creating log path for error 14
+26/04/2024 20:53:19 | Creating log path for error 14
+26/04/2024 21:23:39 | CreateError Called
+26/04/2024 21:23:39 | Creating error for exception message CREATE MESSAGE WITH LOGS V4
+26/04/2024 21:23:43 | Creating log path for error 15
+26/04/2024 21:23:43 | Creating log path for error 15
+26/04/2024 21:24:34 | CreateError Called
+26/04/2024 21:24:34 | Creating error for exception message CREATE MESSAGE WITH LOGS V5
+26/04/2024 21:26:54 | LogIn Called for user email AhmedDev@gmail.com
+26/04/2024 21:26:54 | Getting user by email AhmedDev@gmail.com
+26/04/2024 21:27:01 | LogIn Called for user email AhmedDev@gmail.com
+26/04/2024 21:27:01 | Getting user by email AhmedDev@gmail.com
+26/04/2024 21:27:03 | GetAllErrors Called
+26/04/2024 21:27:03 | Getting Errors
+26/04/2024 21:27:03 | Getting Log path for Error 1
+26/04/2024 21:27:03 | Getting Log path for Error 2
+26/04/2024 21:27:03 | Getting Log path for Error 3
+26/04/2024 21:27:03 | Getting Log path for Error 4
+26/04/2024 21:27:03 | Getting Log path for Error 9
+26/04/2024 21:27:03 | Getting Log path for Error 10
+26/04/2024 21:27:03 | Getting Log path for Error 11
+26/04/2024 21:27:03 | Getting Log path for Error 12
+26/04/2024 21:27:03 | Getting Log path for Error 13
+26/04/2024 21:27:03 | Getting Log path for Error 14
+26/04/2024 21:27:03 | Getting Log path for Error 15
+26/04/2024 21:27:03 | Getting Log path for Error 16
+26/04/2024 21:27:03 | GetDevelopers Called
+26/04/2024 21:27:03 | Getting users by role id 2
+26/04/2024 21:27:03 | GetProjects Called
+26/04/2024 21:27:03 | Getting Projects
+26/04/2024 21:37:32 | LogIn Called for user email AhmedDev@gmail.com
+26/04/2024 21:37:32 | Getting user by email AhmedDev@gmail.com
+26/04/2024 21:37:38 | GetAllErrors Called
+26/04/2024 21:37:38 | Getting Errors
+26/04/2024 21:37:38 | Getting Log path for Error 1
+26/04/2024 21:37:39 | Getting Log path for Error 2
+26/04/2024 21:37:39 | Getting Log path for Error 3
+26/04/2024 21:37:39 | Getting Log path for Error 4
+26/04/2024 21:37:39 | Getting Log path for Error 9
+26/04/2024 21:37:39 | Getting Log path for Error 10
+26/04/2024 21:37:39 | Getting Log path for Error 11
+26/04/2024 21:37:39 | Getting Log path for Error 12
+26/04/2024 21:37:39 | Getting Log path for Error 13
+26/04/2024 21:37:39 | Getting Log path for Error 14
+26/04/2024 21:37:39 | Getting Log path for Error 15
+26/04/2024 21:37:39 | Getting Log path for Error 16
+26/04/2024 21:37:39 | GetDevelopers Called
+26/04/2024 21:37:39 | Getting users by role id 2
+26/04/2024 21:37:39 | GetProjects Called
+26/04/2024 21:37:39 | Getting Projects
+26/04/2024 21:38:10 | UpdateErrorsAssignedDeveloper Called for ErrorId2 updating to dev 5 
+26/04/2024 21:38:10 | Updating errorId 2 dev to 5 
+26/04/2024 21:38:10 | GetAllErrors Called
+26/04/2024 21:38:10 | Getting Errors
+26/04/2024 21:38:10 | Getting Log path for Error 1
+26/04/2024 21:38:10 | Getting Log path for Error 2
+26/04/2024 21:38:10 | Getting Log path for Error 3
+26/04/2024 21:38:10 | Getting Log path for Error 4
+26/04/2024 21:38:10 | Getting Log path for Error 9
+26/04/2024 21:38:10 | Getting Log path for Error 10
+26/04/2024 21:38:10 | Getting Log path for Error 11
+26/04/2024 21:38:10 | Getting Log path for Error 12
+26/04/2024 21:38:10 | Getting Log path for Error 13
+26/04/2024 21:38:10 | Getting Log path for Error 14
+26/04/2024 21:38:10 | Getting Log path for Error 15
+26/04/2024 21:38:10 | Getting Log path for Error 16
+26/04/2024 21:38:25 | GetAllErrors Called for ErrorId1 updating to status 2 
+26/04/2024 21:38:25 | Updating errorId 1 status to AwaitingInformation 
+26/04/2024 21:38:25 | Getting user by user id 3
+26/04/2024 21:38:25 | Getting user by user id 2
+26/04/2024 21:38:26 | GetAllErrors Called
+26/04/2024 21:38:26 | Getting Errors
+26/04/2024 21:38:26 | Getting Log path for Error 1
+26/04/2024 21:38:26 | Getting Log path for Error 2
+26/04/2024 21:38:26 | Getting Log path for Error 3
+26/04/2024 21:38:26 | Getting Log path for Error 4
+26/04/2024 21:38:26 | Getting Log path for Error 9
+26/04/2024 21:38:26 | Getting Log path for Error 10
+26/04/2024 21:38:26 | Getting Log path for Error 11
+26/04/2024 21:38:26 | Getting Log path for Error 12
+26/04/2024 21:38:26 | Getting Log path for Error 13
+26/04/2024 21:38:26 | Getting Log path for Error 14
+26/04/2024 21:38:26 | Getting Log path for Error 15
+26/04/2024 21:38:26 | Getting Log path for Error 16
+26/04/2024 21:39:16 | GetAllErrors Called for ErrorId2 updating to status 2 
+26/04/2024 21:39:16 | Updating errorId 2 status to AwaitingInformation 
+26/04/2024 21:39:16 | GetAllErrors Called
+26/04/2024 21:39:16 | Getting Errors
+26/04/2024 21:39:16 | Getting Log path for Error 1
+26/04/2024 21:39:16 | Getting Log path for Error 2
+26/04/2024 21:39:16 | Getting Log path for Error 3
+26/04/2024 21:39:16 | Getting Log path for Error 4
+26/04/2024 21:39:16 | Getting Log path for Error 9
+26/04/2024 21:39:16 | Getting Log path for Error 10
+26/04/2024 21:39:16 | Getting Log path for Error 11
+26/04/2024 21:39:16 | Getting Log path for Error 12
+26/04/2024 21:39:16 | Getting Log path for Error 13
+26/04/2024 21:39:16 | Getting Log path for Error 14
+26/04/2024 21:39:16 | Getting Log path for Error 15
+26/04/2024 21:39:16 | Getting Log path for Error 16
+26/04/2024 21:41:05 | GetAllErrors Called for ErrorId1 updating to status 3 
+26/04/2024 21:41:05 | Updating errorId 1 status to Escalated 
+26/04/2024 21:41:11 | Getting user by user id 3
+26/04/2024 21:41:11 | Getting user by user id 2
+26/04/2024 21:41:12 | GetAllErrors Called
+26/04/2024 21:41:12 | Getting Errors
+26/04/2024 21:41:12 | Getting Log path for Error 1
+26/04/2024 21:41:12 | Getting Log path for Error 2
+26/04/2024 21:41:12 | Getting Log path for Error 3
+26/04/2024 21:41:12 | Getting Log path for Error 4
+26/04/2024 21:41:12 | Getting Log path for Error 9
+26/04/2024 21:41:12 | Getting Log path for Error 10
+26/04/2024 21:41:12 | Getting Log path for Error 11
+26/04/2024 21:41:12 | Getting Log path for Error 12
+26/04/2024 21:41:12 | Getting Log path for Error 13
+26/04/2024 21:41:12 | Getting Log path for Error 14
+26/04/2024 21:41:12 | Getting Log path for Error 15
+26/04/2024 21:41:12 | Getting Log path for Error 16
+26/04/2024 21:43:52 | GetAllErrors Called for ErrorId2 updating to status 1 
+26/04/2024 21:43:52 | Updating errorId 2 status to InProgress 
+26/04/2024 21:43:52 | GetAllErrors Called
+26/04/2024 21:43:52 | Getting Errors
+26/04/2024 21:43:52 | Getting Log path for Error 1
+26/04/2024 21:43:52 | Getting Log path for Error 2
+26/04/2024 21:43:52 | Getting Log path for Error 3
+26/04/2024 21:43:52 | Getting Log path for Error 4
+26/04/2024 21:43:52 | Getting Log path for Error 9
+26/04/2024 21:43:52 | Getting Log path for Error 10
+26/04/2024 21:43:52 | Getting Log path for Error 11
+26/04/2024 21:43:52 | Getting Log path for Error 12
+26/04/2024 21:43:52 | Getting Log path for Error 13
+26/04/2024 21:43:52 | Getting Log path for Error 14
+26/04/2024 21:43:52 | Getting Log path for Error 15
+26/04/2024 21:43:52 | Getting Log path for Error 16
+26/04/2024 21:44:12 | GetAllErrors Called for ErrorId2 updating to status 3 
+26/04/2024 21:44:12 | Updating errorId 2 status to Escalated 
+26/04/2024 21:44:12 | GetAllErrors Called
+26/04/2024 21:44:12 | Getting Errors
+26/04/2024 21:44:12 | Getting Log path for Error 1
+26/04/2024 21:44:12 | Getting Log path for Error 2
+26/04/2024 21:44:12 | Getting Log path for Error 3
+26/04/2024 21:44:12 | Getting Log path for Error 4
+26/04/2024 21:44:12 | Getting Log path for Error 9
+26/04/2024 21:44:12 | Getting Log path for Error 10
+26/04/2024 21:44:12 | Getting Log path for Error 11
+26/04/2024 21:44:12 | Getting Log path for Error 12
+26/04/2024 21:44:12 | Getting Log path for Error 13
+26/04/2024 21:44:12 | Getting Log path for Error 14
+26/04/2024 21:44:12 | Getting Log path for Error 15
+26/04/2024 21:44:12 | Getting Log path for Error 16
+26/04/2024 21:45:12 | GetAllErrors Called for ErrorId1 updating to status 2 
+26/04/2024 21:45:12 | Updating errorId 1 status to AwaitingInformation 
+26/04/2024 21:45:12 | Getting user by user id 3
+26/04/2024 21:45:12 | Getting user by user id 2
+26/04/2024 21:45:13 | GetAllErrors Called
+26/04/2024 21:45:13 | Getting Errors
+26/04/2024 21:45:13 | Getting Log path for Error 1
+26/04/2024 21:45:13 | Getting Log path for Error 2
+26/04/2024 21:45:13 | Getting Log path for Error 3
+26/04/2024 21:45:13 | Getting Log path for Error 4
+26/04/2024 21:45:13 | Getting Log path for Error 9
+26/04/2024 21:45:13 | Getting Log path for Error 10
+26/04/2024 21:45:13 | Getting Log path for Error 11
+26/04/2024 21:45:13 | Getting Log path for Error 12
+26/04/2024 21:45:13 | Getting Log path for Error 13
+26/04/2024 21:45:13 | Getting Log path for Error 14
+26/04/2024 21:45:13 | Getting Log path for Error 15
+26/04/2024 21:45:13 | Getting Log path for Error 16
+26/04/2024 21:45:44 | GetAllErrors Called for ErrorId10 updating to status 4 
+26/04/2024 21:45:44 | Updating errorId 10 status to Cancelled 
+26/04/2024 21:45:44 | Getting user by user id 3
+26/04/2024 21:45:44 | Getting user by user id 2
+26/04/2024 21:45:45 | GetAllErrors Called
+26/04/2024 21:45:45 | Getting Errors
+26/04/2024 21:45:45 | Getting Log path for Error 1
+26/04/2024 21:45:45 | Getting Log path for Error 2
+26/04/2024 21:45:45 | Getting Log path for Error 3
+26/04/2024 21:45:45 | Getting Log path for Error 4
+26/04/2024 21:45:45 | Getting Log path for Error 9
+26/04/2024 21:45:45 | Getting Log path for Error 10
+26/04/2024 21:45:45 | Getting Log path for Error 11
+26/04/2024 21:45:45 | Getting Log path for Error 12
+26/04/2024 21:45:45 | Getting Log path for Error 13
+26/04/2024 21:45:45 | Getting Log path for Error 14
+26/04/2024 21:45:45 | Getting Log path for Error 15
+26/04/2024 21:45:45 | Getting Log path for Error 16
+26/04/2024 21:46:03 | GetAllErrors Called for ErrorId10 updating to status 2 
+26/04/2024 21:46:03 | Updating errorId 10 status to AwaitingInformation 
+26/04/2024 21:46:03 | Getting user by user id 3
+26/04/2024 21:46:03 | Getting user by user id 2
+26/04/2024 21:46:04 | GetAllErrors Called
+26/04/2024 21:46:04 | Getting Errors
+26/04/2024 21:46:04 | Getting Log path for Error 1
+26/04/2024 21:46:04 | Getting Log path for Error 2
+26/04/2024 21:46:04 | Getting Log path for Error 3
+26/04/2024 21:46:04 | Getting Log path for Error 4
+26/04/2024 21:46:04 | Getting Log path for Error 9
+26/04/2024 21:46:04 | Getting Log path for Error 10
+26/04/2024 21:46:04 | Getting Log path for Error 11
+26/04/2024 21:46:04 | Getting Log path for Error 12
+26/04/2024 21:46:04 | Getting Log path for Error 13
+26/04/2024 21:46:04 | Getting Log path for Error 14
+26/04/2024 21:46:04 | Getting Log path for Error 15
+26/04/2024 21:46:04 | Getting Log path for Error 16
+26/04/2024 21:46:33 | GetAllErrors Called for ErrorId10 updating to status 1 
+26/04/2024 21:46:33 | Updating errorId 10 status to InProgress 
+26/04/2024 21:46:33 | Getting user by user id 3
+26/04/2024 21:46:33 | Getting user by user id 2
+26/04/2024 21:46:34 | GetAllErrors Called
+26/04/2024 21:46:34 | Getting Errors
+26/04/2024 21:46:34 | Getting Log path for Error 1
+26/04/2024 21:46:34 | Getting Log path for Error 2
+26/04/2024 21:46:34 | Getting Log path for Error 3
+26/04/2024 21:46:34 | Getting Log path for Error 4
+26/04/2024 21:46:34 | Getting Log path for Error 9
+26/04/2024 21:46:34 | Getting Log path for Error 10
+26/04/2024 21:46:34 | Getting Log path for Error 11
+26/04/2024 21:46:34 | Getting Log path for Error 12
+26/04/2024 21:46:34 | Getting Log path for Error 13
+26/04/2024 21:46:34 | Getting Log path for Error 14
+26/04/2024 21:46:34 | Getting Log path for Error 15
+26/04/2024 21:46:34 | Getting Log path for Error 16
+26/04/2024 21:46:39 | GetAllErrors Called for ErrorId10 updating to status 4 
+26/04/2024 21:46:39 | Updating errorId 10 status to Cancelled 
+26/04/2024 21:46:39 | Getting user by user id 3
+26/04/2024 21:46:40 | Getting user by user id 2
+26/04/2024 21:46:40 | GetAllErrors Called
+26/04/2024 21:46:40 | Getting Errors
+26/04/2024 21:46:40 | Getting Log path for Error 1
+26/04/2024 21:46:40 | Getting Log path for Error 2
+26/04/2024 21:46:40 | Getting Log path for Error 3
+26/04/2024 21:46:40 | Getting Log path for Error 4
+26/04/2024 21:46:40 | Getting Log path for Error 9
+26/04/2024 21:46:40 | Getting Log path for Error 10
+26/04/2024 21:46:40 | Getting Log path for Error 11
+26/04/2024 21:46:40 | Getting Log path for Error 12
+26/04/2024 21:46:40 | Getting Log path for Error 13
+26/04/2024 21:46:40 | Getting Log path for Error 14
+26/04/2024 21:46:40 | Getting Log path for Error 15
+26/04/2024 21:46:40 | Getting Log path for Error 16
+26/04/2024 21:48:01 | GetAllErrors Called for ErrorId1 updating to status 3 
+26/04/2024 21:48:01 | Updating errorId 1 status to Escalated 
+26/04/2024 21:48:05 | Getting user by user id 3
+26/04/2024 21:48:06 | Getting user by user id 2
+26/04/2024 21:48:07 | GetAllErrors Called
+26/04/2024 21:48:07 | Getting Errors
+26/04/2024 21:48:07 | Getting Log path for Error 1
+26/04/2024 21:48:07 | Getting Log path for Error 2
+26/04/2024 21:48:07 | Getting Log path for Error 3
+26/04/2024 21:48:07 | Getting Log path for Error 4
+26/04/2024 21:48:07 | Getting Log path for Error 9
+26/04/2024 21:48:07 | Getting Log path for Error 10
+26/04/2024 21:48:07 | Getting Log path for Error 11
+26/04/2024 21:48:07 | Getting Log path for Error 12
+26/04/2024 21:48:07 | Getting Log path for Error 13
+26/04/2024 21:48:07 | Getting Log path for Error 14
+26/04/2024 21:48:07 | Getting Log path for Error 15
+26/04/2024 21:48:07 | Getting Log path for Error 16
+26/04/2024 21:48:32 | GetAllErrors Called for ErrorId2 updating to status 2 
+26/04/2024 21:48:32 | Updating errorId 2 status to AwaitingInformation 
+26/04/2024 21:48:32 | GetAllErrors Called
+26/04/2024 21:48:32 | Getting Errors
+26/04/2024 21:48:32 | Getting Log path for Error 1
+26/04/2024 21:48:32 | Getting Log path for Error 2
+26/04/2024 21:48:32 | Getting Log path for Error 3
+26/04/2024 21:48:32 | Getting Log path for Error 4
+26/04/2024 21:48:32 | Getting Log path for Error 9
+26/04/2024 21:48:32 | Getting Log path for Error 10
+26/04/2024 21:48:32 | Getting Log path for Error 11
+26/04/2024 21:48:32 | Getting Log path for Error 12
+26/04/2024 21:48:32 | Getting Log path for Error 13
+26/04/2024 21:48:32 | Getting Log path for Error 14
+26/04/2024 21:48:32 | Getting Log path for Error 15
+26/04/2024 21:48:32 | Getting Log path for Error 16
+26/04/2024 21:49:37 | GetAllErrors Called for ErrorId10 updating to status 2 
+26/04/2024 21:49:37 | Updating errorId 10 status to AwaitingInformation 
+26/04/2024 21:49:37 | Getting user by user id 3
+26/04/2024 21:49:37 | Getting user by user id 2
+26/04/2024 21:49:38 | GetAllErrors Called
+26/04/2024 21:49:38 | Getting Errors
+26/04/2024 21:49:38 | Getting Log path for Error 1
+26/04/2024 21:49:38 | Getting Log path for Error 2
+26/04/2024 21:49:38 | Getting Log path for Error 3
+26/04/2024 21:49:38 | Getting Log path for Error 4
+26/04/2024 21:49:38 | Getting Log path for Error 9
+26/04/2024 21:49:38 | Getting Log path for Error 10
+26/04/2024 21:49:38 | Getting Log path for Error 11
+26/04/2024 21:49:38 | Getting Log path for Error 12
+26/04/2024 21:49:38 | Getting Log path for Error 13
+26/04/2024 21:49:38 | Getting Log path for Error 14
+26/04/2024 21:49:38 | Getting Log path for Error 15
+26/04/2024 21:49:38 | Getting Log path for Error 16
+26/04/2024 21:53:05 | GetAllErrors Called for ErrorId1 updating to status 2 
+26/04/2024 21:53:05 | Updating errorId 1 status to AwaitingInformation 
+26/04/2024 21:53:09 | Getting user by user id 3
+26/04/2024 21:53:09 | Getting user by user id 2
+26/04/2024 21:53:11 | GetAllErrors Called
+26/04/2024 21:53:11 | Getting Errors
+26/04/2024 21:53:11 | Getting Log path for Error 1
+26/04/2024 21:53:11 | Getting Log path for Error 2
+26/04/2024 21:53:11 | Getting Log path for Error 3
+26/04/2024 21:53:11 | Getting Log path for Error 4
+26/04/2024 21:53:11 | Getting Log path for Error 9
+26/04/2024 21:53:11 | Getting Log path for Error 10
+26/04/2024 21:53:11 | Getting Log path for Error 11
+26/04/2024 21:53:11 | Getting Log path for Error 12
+26/04/2024 21:53:11 | Getting Log path for Error 13
+26/04/2024 21:53:11 | Getting Log path for Error 14
+26/04/2024 21:53:11 | Getting Log path for Error 15
+26/04/2024 21:53:11 | Getting Log path for Error 16
+26/04/2024 21:55:06 | GetAllErrors Called for ErrorId1 updating to status 3 
+26/04/2024 21:55:06 | Updating errorId 1 status to Escalated 
+26/04/2024 21:55:10 | Getting user by user id 3
+26/04/2024 21:55:10 | Getting user by user id 2
+26/04/2024 21:55:11 | GetAllErrors Called
+26/04/2024 21:55:11 | Getting Errors
+26/04/2024 21:55:11 | Getting Log path for Error 1
+26/04/2024 21:55:11 | Getting Log path for Error 2
+26/04/2024 21:55:11 | Getting Log path for Error 3
+26/04/2024 21:55:11 | Getting Log path for Error 4
+26/04/2024 21:55:11 | Getting Log path for Error 9
+26/04/2024 21:55:11 | Getting Log path for Error 10
+26/04/2024 21:55:11 | Getting Log path for Error 11
+26/04/2024 21:55:11 | Getting Log path for Error 12
+26/04/2024 21:55:11 | Getting Log path for Error 13
+26/04/2024 21:55:11 | Getting Log path for Error 14
+26/04/2024 21:55:11 | Getting Log path for Error 15
+26/04/2024 21:55:11 | Getting Log path for Error 16
+26/04/2024 21:55:42 | GetAllErrors Called for ErrorId1 updating to status 2 
+26/04/2024 21:55:42 | Updating errorId 1 status to AwaitingInformation 
+26/04/2024 21:55:42 | Getting user by user id 3
+26/04/2024 21:55:42 | Getting user by user id 2
+26/04/2024 21:55:44 | GetAllErrors Called
+26/04/2024 21:55:44 | Getting Errors
+26/04/2024 21:55:44 | Getting Log path for Error 1
+26/04/2024 21:55:44 | Getting Log path for Error 2
+26/04/2024 21:55:44 | Getting Log path for Error 3
+26/04/2024 21:55:44 | Getting Log path for Error 4
+26/04/2024 21:55:44 | Getting Log path for Error 9
+26/04/2024 21:55:44 | Getting Log path for Error 10
+26/04/2024 21:55:44 | Getting Log path for Error 11
+26/04/2024 21:55:44 | Getting Log path for Error 12
+26/04/2024 21:55:44 | Getting Log path for Error 13
+26/04/2024 21:55:44 | Getting Log path for Error 14
+26/04/2024 21:55:44 | Getting Log path for Error 15
+26/04/2024 21:55:44 | Getting Log path for Error 16
+26/04/2024 21:56:43 | GetAllErrors Called for ErrorId1 updating to status 4 
+26/04/2024 21:56:43 | Updating errorId 1 status to Cancelled 
+26/04/2024 21:56:47 | Getting user by user id 3
+26/04/2024 21:56:47 | Getting user by user id 2
+26/04/2024 21:56:48 | GetAllErrors Called
+26/04/2024 21:56:48 | Getting Errors
+26/04/2024 21:56:48 | Getting Log path for Error 1
+26/04/2024 21:56:48 | Getting Log path for Error 2
+26/04/2024 21:56:48 | Getting Log path for Error 3
+26/04/2024 21:56:48 | Getting Log path for Error 4
+26/04/2024 21:56:48 | Getting Log path for Error 9
+26/04/2024 21:56:48 | Getting Log path for Error 10
+26/04/2024 21:56:48 | Getting Log path for Error 11
+26/04/2024 21:56:48 | Getting Log path for Error 12
+26/04/2024 21:56:48 | Getting Log path for Error 13
+26/04/2024 21:56:48 | Getting Log path for Error 14
+26/04/2024 21:56:48 | Getting Log path for Error 15
+26/04/2024 21:56:48 | Getting Log path for Error 16
+26/04/2024 21:57:20 | GetAllErrors Called for ErrorId10 updating to status 4 
+26/04/2024 21:57:20 | Updating errorId 10 status to Cancelled 
+26/04/2024 21:57:20 | Getting user by user id 3
+26/04/2024 21:57:20 | Getting user by user id 2
+26/04/2024 21:57:21 | GetAllErrors Called
+26/04/2024 21:57:21 | Getting Errors
+26/04/2024 21:57:21 | Getting Log path for Error 1
+26/04/2024 21:57:21 | Getting Log path for Error 2
+26/04/2024 21:57:21 | Getting Log path for Error 3
+26/04/2024 21:57:21 | Getting Log path for Error 4
+26/04/2024 21:57:21 | Getting Log path for Error 9
+26/04/2024 21:57:21 | Getting Log path for Error 10
+26/04/2024 21:57:21 | Getting Log path for Error 11
+26/04/2024 21:57:21 | Getting Log path for Error 12
+26/04/2024 21:57:21 | Getting Log path for Error 13
+26/04/2024 21:57:21 | Getting Log path for Error 14
+26/04/2024 21:57:21 | Getting Log path for Error 15
+26/04/2024 21:57:21 | Getting Log path for Error 16
