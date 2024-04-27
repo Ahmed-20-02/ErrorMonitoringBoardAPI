@@ -11,7 +11,7 @@ namespace UnitTests.Business.Getters
     public class ProjectsGetterTests : TestBase<ProjectsGetter>
     {
         [Fact]
-        public async Task GetReturnsCorrectlyMappedProjects()
+        public async Task Get_ReturnsCorrectlyMappedProjects()
         {
             var stubProjectId = 10;
 
@@ -47,7 +47,7 @@ namespace UnitTests.Business.Getters
         }
         
         [Fact]
-        public async Task GetHitsException()
+        public async Task Get_HitsException()
         {
             this.AutoMocker.GetMock<IGetProjectsQuery>()
                 .Setup(x => x.Get())

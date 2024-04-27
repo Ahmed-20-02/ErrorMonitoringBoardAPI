@@ -6,7 +6,7 @@ namespace UnitTests.Business.Mappers
     public class ProjectModelMapperTests : TestBase<ProjectModelMapper>
     {
         [Fact]
-        public void GetReturnsCorrectlyMappedProject()
+        public void Map_ReturnsCorrectlyMappedProject()
         {
             var stubProjectId = 10;
 
@@ -21,7 +21,7 @@ namespace UnitTests.Business.Mappers
         }
 
         [Fact]
-        public void GetHitsException()
+        public void Map_HitsException()
         {
             Project project = null;
 

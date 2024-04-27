@@ -6,7 +6,7 @@ namespace UnitTests.Business.Mappers
     public class ErrorModelMapperTests : TestBase<ErrorModelMapper>
     {
         [Fact]
-        public void GetReturnsCorrectlyMappedError()
+        public void Map_ReturnsCorrectlyMappedError()
         {
             var stubErrorId = 10;
 
@@ -21,7 +21,7 @@ namespace UnitTests.Business.Mappers
         }
 
         [Fact]
-        public void GetHitsException()
+        public void Map_HitsException()
         {
             Error error = null;
 

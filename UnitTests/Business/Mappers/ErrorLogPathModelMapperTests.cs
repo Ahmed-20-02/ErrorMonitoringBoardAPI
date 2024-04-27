@@ -6,7 +6,7 @@ namespace UnitTests.Business.Mappers
     public class ErrorLogPathModelMapperTests : TestBase<ErrorLogPathModelMapper>
     {
        [Fact]
-        public void GetReturnsCorrectlyMappedLogPath()
+        public void Map_ReturnsCorrectlyMappedLogPath()
         {
             var stubErrorId = 10;
 
@@ -21,7 +21,7 @@ namespace UnitTests.Business.Mappers
         }
         
         [Fact]
-        public void GetHitsException()
+        public void Map_HitsException()
         {
             ErrorLogPath nullLogPath = null;
 

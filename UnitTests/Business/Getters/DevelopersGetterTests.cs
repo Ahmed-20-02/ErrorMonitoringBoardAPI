@@ -12,7 +12,7 @@ namespace UnitTests.Business.Getters
     public class DevelopersGetterTests : TestBase<DevelopersGetter>
     {
         [Fact]
-        public async Task GetReturnsCorrectlyMappedDevelopers()
+        public async Task Get_ReturnsCorrectlyMappedDevelopers()
         {
             var stubUserId = 10;
             var stubRoleId = (int)RolesEnum.Developer;;
@@ -47,7 +47,7 @@ namespace UnitTests.Business.Getters
         }
         
         [Fact]
-        public async Task GetHitsException()
+        public async Task Get_HitsException()
         {
             this.AutoMocker.GetMock<IGetUsersByRoleIdQuery>()
                 .Setup(x => x.Get(It.IsAny<int>()))

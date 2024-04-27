@@ -3,7 +3,6 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
     using DevelopmentProjectErrorBoardAPI.Business.Getters.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
-    using DevelopmentProjectErrorBoardAPI.Data.Commands.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Resources.Requests;
     using Microsoft.AspNetCore.Mvc;
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
@@ -15,13 +14,10 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         private readonly IActiveErrorsGetter _activeErrorsGetter;
         private readonly IDevelopersGetter _developersGetter;
         private readonly IProjectsGetter _projectsGetter;
-        private readonly IUserPasswordUpdater _userPasswordUpdater;
         private readonly IErrorsAssignedDeveloperUpdater _errorsAssignedDeveloperUpdater;
         private readonly IUpdateErrorStatusProcessor _updateErrorStatusProcessor;
         private readonly IErrorCloser _errorCloser;
         private readonly IDevLogInCheckProcessor _devLogInCheckProcessor;
-        private readonly ICreateErrorCommand _createErrorCommand;
-        private readonly ICreateLogPathCommand _createLogPathCommand;
         private readonly ICreateErrorProcessor _createErrorProcessor;
         private readonly ILogger _logger;
         
@@ -30,26 +26,20 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             IActiveErrorsGetter activeErrorsGetter, 
             IUpdateErrorStatusProcessor updateErrorStatusProcessor, 
             IDevLogInCheckProcessor devLogInCheckProcessor, 
-            IUserPasswordUpdater userPasswordUpdater, 
             IDevelopersGetter developersGetter,
             IErrorsAssignedDeveloperUpdater errorsAssignedDeveloperUpdater, 
             IProjectsGetter projectsGetter, 
-            IErrorCloser errorCloser, 
-            ICreateErrorCommand createErrorCommand, 
-            ICreateLogPathCommand createLogPathCommand, 
+            IErrorCloser errorCloser,
             ICreateErrorProcessor createErrorProcessor)
         {
             _logger = logger;
             _activeErrorsGetter = activeErrorsGetter;
             _updateErrorStatusProcessor = updateErrorStatusProcessor;
             _devLogInCheckProcessor = devLogInCheckProcessor;
-            _userPasswordUpdater = userPasswordUpdater;
             _developersGetter = developersGetter;
             _errorsAssignedDeveloperUpdater = errorsAssignedDeveloperUpdater;
             _projectsGetter = projectsGetter;
             _errorCloser = errorCloser;
-            _createErrorCommand = createErrorCommand;
-            _createLogPathCommand = createLogPathCommand;
             _createErrorProcessor = createErrorProcessor;
         }
 
@@ -104,7 +94,7 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         [HttpPut("UpdateErrorStatus")]
         public async Task<IActionResult> UpdateErrorStatus([FromBody] UpdateErrorStatusRequest request)
         {
-            _logger.Log($"UpdateErrorStatus called for ErrorId{request.ErrorId} updating to status {request.StatusId} ");
+            _logger.Log($"UpdateErrorStatus called for ErrorId {request.ErrorId} updating to status {request.StatusId} ");
             try
             {
                 var error = await _updateErrorStatusProcessor.Process(request);
@@ -112,7 +102,7 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             }
             catch (Exception e)
             {
-                _logger.Log($"UpdateErrorStatus failed for ErrorId{request.ErrorId} updating to status {request.StatusId} ");
+                _logger.Log($"UpdateErrorStatus failed for ErrorId {request.ErrorId} updating to status {request.StatusId} ");
 
                 Console.WriteLine(e);
                 throw;
@@ -122,15 +112,15 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         [HttpPut("DeactivateError")]
         public async Task<IActionResult> DeactivateError([FromBody] DeactivateErrorRequest request)
         {
-            _logger.Log($"DeactivateError called for ErrorId{request.ErrorId}");
+            _logger.Log($"DeactivateError called for ErrorId {request.ErrorId}");
             try
             {
-                var error = _errorCloser.Close(request.ErrorId);
+                var error = await _errorCloser.Close(request.ErrorId);
                 return new OkObjectResult(error);
             }
             catch (Exception e)
             {
-                _logger.Log($"DeactivateError failed for ErrorId{request.ErrorId}");
+                _logger.Log($"DeactivateError failed for ErrorId {request.ErrorId}");
 
                 Console.WriteLine(e);
                 throw;
@@ -140,15 +130,15 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
         [HttpPut("UpdateErrorsAssignedDeveloper")]
         public async Task<IActionResult> UpdateErrorsAssignedDeveloper([FromBody] UpdateErrorsAssignedDeveloperRequest request)
         {
-            _logger.Log($"UpdateErrorsAssignedDeveloper called for ErrorId{request.ErrorId} updating to developer {request.DevId} ");
+            _logger.Log($"UpdateErrorsAssignedDeveloper called for ErrorId {request.ErrorId} updating to developer {request.DevId} ");
             try
             {
-                var error = _errorsAssignedDeveloperUpdater.Update(request);
+                var error = await _errorsAssignedDeveloperUpdater.Update(request);
                 return new OkObjectResult(error);
             }
             catch (Exception e)
             {
-                _logger.Log($"UpdateErrorsAssignedDeveloper failed for ErrorId{request.ErrorId} updating to developer {request.DevId} ");
+                _logger.Log($"UpdateErrorsAssignedDeveloper failed for ErrorId {request.ErrorId} updating to developer {request.DevId} ");
 
                 Console.WriteLine(e);
                 throw;

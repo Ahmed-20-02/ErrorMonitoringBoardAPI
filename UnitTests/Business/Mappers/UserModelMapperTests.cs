@@ -6,7 +6,7 @@ namespace UnitTests.Business.Mappers
     public class UserModelMapperTests : TestBase<UserModelMapper>
     {
         [Fact]
-        public void GetReturnsCorrectlyMappedUser()
+        public void Map_ReturnsCorrectlyMappedUser()
         {
             var stubUserId = 10;
 
@@ -21,7 +21,7 @@ namespace UnitTests.Business.Mappers
         }
         
         [Fact]
-        public void GetHitsException()
+        public void Map_HitsException()
         {
             User user = null;
 

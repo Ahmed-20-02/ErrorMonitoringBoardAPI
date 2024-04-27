@@ -9,7 +9,7 @@ namespace UnitTests.Business.Getters
     public class UserByIdGetterTests : TestBase<UserByIdGetter>
     {
         [Fact]
-        public async Task GetReturnsCorrectUser()
+        public async Task Get_ReturnsCorrectUser()
         {
 
             var stubUserId = 10;
@@ -34,7 +34,7 @@ namespace UnitTests.Business.Getters
         }
 
         [Fact]
-        public async Task GetHitsException()
+        public async Task Get_HitsException()
         {
             this.AutoMocker.GetMock<IGetUserByIdQuery>()
                 .Setup(x => x.Get(It.IsAny<int>()))

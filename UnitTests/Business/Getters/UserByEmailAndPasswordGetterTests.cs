@@ -9,7 +9,7 @@ namespace UnitTests.Business.Getters
     public class UserByEmailAndPasswordGetterTests : TestBase<UserByEmailAndPasswordGetter>
     {
         [Fact]
-        public async Task GetReturnsCorrectUser()
+        public async Task Get_ReturnsCorrectUser()
         {
             var stubEmail = "email";
             var stubPassword = "password";
@@ -35,7 +35,7 @@ namespace UnitTests.Business.Getters
         }
 
         [Fact]
-        public async Task GetHitsException()
+        public async Task Get_HitsException()
         {
             this.AutoMocker.GetMock<IGetUserByEmailAndPasswordQuery>()
                 .Setup(x => x.Get(It.IsAny<string>(), It.IsAny<string>()))

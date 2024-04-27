@@ -12,7 +12,7 @@ namespace UnitTests.Business.Getters
     public class ActiveErrorsGetterTests : TestBase<ActiveErrorsGetter>
     {
         [Fact]
-        public async Task GetReturnsCorrectlyMappedErrors()
+        public async Task Get_ReturnsCorrectlyMappedErrors()
         {
             var stubErrorId = 10;
 
@@ -58,7 +58,7 @@ namespace UnitTests.Business.Getters
         }
         
         [Fact]
-        public async Task GetHitsException()
+        public async Task Get_HitsException()
         {
             this.AutoMocker.GetMock<IGetActiveErrorsQuery>()
                 .Setup(x => x.Get())
