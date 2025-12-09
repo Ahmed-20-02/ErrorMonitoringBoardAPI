@@ -52,7 +52,7 @@ jobs:
         
     #log
     - name: Show project path
-      run: echo "Project path is $env:Project_Path"
+      run: echo "Project path is ${{ env.Project_Path }}"
 
     # Publish the application (instead of packaging)
     - name: Publish application
