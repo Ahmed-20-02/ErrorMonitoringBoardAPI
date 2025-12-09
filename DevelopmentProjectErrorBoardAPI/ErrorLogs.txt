@@ -56,3 +56,8 @@
 23/04/2024 14:26:40 | Getting Log path for Error 1
 
 
+05/12/2025 15:35:19 | CreateError Called
+05/12/2025 15:35:19 | Creating error for exception message string
+05/12/2025 15:35:38 | CreateError Failed
+09/12/2025 16:21:22 | GetAllErrors Called
+09/12/2025 16:23:10 | GetAllErrors Called

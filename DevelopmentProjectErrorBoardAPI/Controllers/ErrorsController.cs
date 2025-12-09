@@ -4,6 +4,7 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
     using DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Resources.Requests;
+    using Microsoft.AspNetCore.Http.HttpResults;
     using Microsoft.AspNetCore.Mvc;
     using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
     
@@ -41,6 +42,21 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
             _projectsGetter = projectsGetter;
             _errorCloser = errorCloser;
             _createErrorProcessor = createErrorProcessor;
+        }
+
+        [HttpGet("HealthCheck")]
+        public async Task<IActionResult> HealthCheck()
+        {
+            _logger.Log("GetAllErrors Called");
+            try
+            {
+                return new OkObjectResult("I AM HEALTHY");
+            }
+            catch (Exception e)
+            {
+                _logger.Log($"Health check Failed {e}");
+                return new BadRequestObjectResult(e.Message);
+            }
         }
 
         [HttpGet("GetErrors")]
