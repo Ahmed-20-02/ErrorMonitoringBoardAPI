@@ -54,10 +54,9 @@ jobs:
     - name: Show project path
       run: echo "Project path is $env:Project_Path"
 
-
     # Publish the application (instead of packaging)
     - name: Publish application
-      run: dotnet publish "$env:Project_Path" -c $env:Configuration -o out
+      run: dotnet publish ${{ env.Project_Path }} -c ${{ matrix.configuration }} -o "./out"
 
     # Upload published binaries as artifacts
     - name: Upload build artifacts
