@@ -1,0 +1,62 @@
+# This workflow builds and tests a WPF or Windows Forms desktop application
+# built on .NET Core. It does not use a Windows Application Packaging Project.
+
+name: .NET Core Desktop
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    runs-on: windows-latest
+
+    env:
+      Solution_Name: DevelopmentProjectErrorBoardAPI.sln         # Replace with your solution name
+      Test_Project_Path: UnitTests/UnitTests.csproj      # Replace with your test project path
+      Project_Path: ErrorMonitoringBoardAPI/DevelopmentProjectErrorBoardAPI.csproj  # Replace with your main project path
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    # Add MSBuild to the PATH
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v2
+
+    # Execute all unit tests in the solution
+    - name: Execute unit tests
+      run: dotnet test $env:Test_Project_Path --configuration $env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
+
+    # Restore the application
+    - name: Restore the application
+      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
+
+    # Publish the application (instead of packaging)
+    - name: Publish application
+      run: dotnet publish $env:Project_Path -c $env:Configuration -o out
+
+    # Upload published binaries as artifacts
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: PublishedApp-${{ matrix.configuration }}
+        path: out
