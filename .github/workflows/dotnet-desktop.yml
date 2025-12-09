@@ -19,7 +19,7 @@ jobs:
 
     env:
       Solution_Name: ErrorMonitoringBoardAPI/DevelopmentProjectErrorBoardAPI.sln         # Replace with your solution name
-      Test_Project_Path: UnitTests/UnitTests.csproj      # Replace with your test project path
+      Test_Project_Path: UnitTests/UnitTests.csproj              # Replace with your test project path
       Project_Path: ErrorMonitoringBoardAPI/DevelopmentProjectErrorBoardAPI.csproj  # Replace with your main project path
 
     steps:
@@ -44,9 +44,9 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
 
-    # Restore the application
-    - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+    # Restore dependencies using dotnet restore
+    - name: Restore dependencies
+      run: dotnet restore $env:Solution_Name
       env:
         Configuration: ${{ matrix.configuration }}
 
