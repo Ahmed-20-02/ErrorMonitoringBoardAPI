@@ -1,0 +1,99 @@
+# This workflow builds and tests a WPF or Windows Forms desktop application
+# built on .NET Core. It does not use a Windows Application Packaging Project.
+
+name: .NET Core Desktop
+
+on:
+  push:
+    branches: [ "main" ]
+    tags: [ "v*" ]   # 👈 Trigger on commits to main AND tag pushes
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    runs-on: windows-latest
+
+    env:
+      Solution_Name: DevelopmentProjectErrorBoardAPI/DevelopmentProjectErrorBoardAPI.sln
+      Test_Project_Path: UnitTests/UnitTests.csproj
+      Project_Path: DevelopmentProjectErrorBoardAPI/DevelopmentProjectErrorBoardAPI.csproj
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Execute unit tests
+      run: dotnet test $env:Test_Project_Path --configuration $env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
+
+    - name: Restore dependencies
+      run: dotnet restore $env:Solution_Name
+      env:
+        Configuration: ${{ matrix.configuration }}
+        
+    - name: Show project path
+      run: echo "Project path is ${{ env.Project_Path }}"
+
+    - name: Publish application
+      run: dotnet publish ${{ env.Project_Path }} -c ${{ matrix.configuration }} -o "./out"
+
+    # 👇 New step: Zip the published output
+    - name: Zip published output
+      run: |
+        powershell Compress-Archive -Path out\* -DestinationPath PublishedApp-${{ matrix.configuration }}.zip
+
+    # Upload zipped build artifacts
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: PublishedApp-${{ matrix.configuration }}
+        path: PublishedApp-${{ matrix.configuration }}.zip
+
+  release:
+    needs: build   # 👈 Only run if build job succeeds
+    if: startsWith(github.ref, 'refs/tags/')   # 👈 Only run on tag pushes
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      with:
+        tag_name: ${{ github.ref_name }}
+        release_name: Release ${{ github.ref_name }}
+        body: "Automated release for ${{ github.ref_name }}"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: PublishedApp-Release   # 👈 Download the zipped artifact from the build job
+        path: ./artifact
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./artifact/PublishedApp-Release.zip
+        asset_name: PublishedApp-${{ github.ref_name }}.zip
+        asset_content_type: application/zip
