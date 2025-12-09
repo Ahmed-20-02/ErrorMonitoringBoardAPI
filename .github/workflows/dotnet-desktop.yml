@@ -18,7 +18,7 @@ jobs:
     runs-on: windows-latest
 
     env:
-      Solution_Name: DevelopmentProjectErrorBoardAPI.sln         # Replace with your solution name
+      Solution_Name: ErrorMonitoringBoardAPI/DevelopmentProjectErrorBoardAPI.sln         # Replace with your solution name
       Test_Project_Path: UnitTests/UnitTests.csproj      # Replace with your test project path
       Project_Path: ErrorMonitoringBoardAPI/DevelopmentProjectErrorBoardAPI.csproj  # Replace with your main project path
 
