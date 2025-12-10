@@ -4,9 +4,8 @@ namespace DevelopmentProjectErrorBoardAPI.Controllers
     using DevelopmentProjectErrorBoardAPI.Business.Processors.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Business.Updaters.Interfaces;
     using DevelopmentProjectErrorBoardAPI.Resources.Requests;
-    using Microsoft.AspNetCore.Http.HttpResults;
     using Microsoft.AspNetCore.Mvc;
-    using ILogger = DevelopmentProjectErrorBoardAPI.Logger.ILogger;
+    using ILogger = Logger.ILogger;
     
     [ApiController]
     [Route("[controller]")]
